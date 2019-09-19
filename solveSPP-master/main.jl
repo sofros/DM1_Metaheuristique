@@ -8,7 +8,7 @@ using LinearAlgebra
 include("loadSPP.jl")
 include("setSPP.jl")
 include("getfname.jl")
-include("DM1.jl")
+include("DM1_1.jl")
 
 # =========================================================================== #
 
