@@ -13,7 +13,7 @@ include("DM1_1.jl")
 # =========================================================================== #
 
 # Setting the data
-fname = "B:/Cours/Nantes/Metaheuristique/DM1/solveSPP-master/Data/didactic.dat"  # path for a standard config on macOS
+fname = "B:/Cours/Nantes/Metaheuristique/DM1_Metaheuristique/solveSPP-master/Data/didactic.dat"  # path for a standard config on macOS
 cost, matrix, n, m = loadSPP(fname)
 
 # Proceeding to the optimization
@@ -28,5 +28,11 @@ print("x  = "); println(value.(ip_x))
 # =========================================================================== #
 
 # Collecting the names of instances to solve
-target = "B:/Cours/Nantes/Metaheuristique/DM1/solveSPP-master/Data"            # path for a standard config on macOS
+target = "B:/Cours/Nantes/Metaheuristique/DM1_Metaheuristique/solveSPP-master/Data"            # path for a standard config on macOS
 #fnames = getfname(target)
+
+couttest = [1,5,6,8,7,3]
+mattest = [[1.0,0.0,1.0,0.0,0.0,1.0],[1.0,1.0,0.0,1.0,1.0,1.0],[0.0,0.0,1.0,0.0,0.0,1.0],[1.0,1.0,0.0,1.0,0.0,0.0],[0.0,0.0,1.0,1.0,1.0,0.0]]
+ntest=6
+mtest=5
+SOL=Glouton(couttest, mattest, mtest, ntest)
