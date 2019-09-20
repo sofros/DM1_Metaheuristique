@@ -8,7 +8,7 @@ using LinearAlgebra
 include("loadSPP.jl")
 include("setSPP.jl")
 include("getfname.jl")
-include("DM1_1.jl")
+include("OLD_DM1_1.jl")
 
 # =========================================================================== #
 
@@ -34,3 +34,7 @@ target = "B:/Cours/Nantes/Metaheuristique/DM1_Metaheuristique/solveSPP-master/Da
 
 
 # ============================================================================ #
+a  = zeros(Float64, n)
+matrix = [[1;1;1;0;1;0;1;1;0];[0;1;1;0;0;0;0;1;0];[0;1;0;0;1;1;0;1;1];[0;0;0;1;0;0;0;0;0];[1;0;1;0;1;1;0;0;1];[0;1;1;0;0;0;1;0;1];[1;0;0;1;1;0;0;1;1]]
+a = Glouton(cost, matrix, n, m)
+println(a)
