@@ -18,26 +18,22 @@ function Glouton(cost, matrix, n, m)
     #initialisation de la Solution
     SOL = zeros(Float64, n)
 
-    println( "\n Matrix: ", matrix, "\n Cost: ", cost,"\n n= ", n, "   m= ", m,"\n actif: ", actif, "\n stop: ", stop, "\n util: ", util, "\n SOL: ", SOL, "\n \n")
 
 
     while actif!=stop
         #Foction d'utilité
         util = Utilite(cost, matrix, actif, n, m)
 
-        println("\n **********************************\n utilité finiiiiiii! :D \n *************************************\n")
 
         #Choix parmis les candidats de util
         PosCandidat = PosMax(util,n)
 
-        println("\n +++++++++++++ \n PosMax est fini! =) \n Le candidat à la position: ", PosCandidat, "\n Type de de candidat: ", typeof(PosCandidat), "\n +++++++++++++++++ \n")
 
         #On ajoute le candidat à la solution
         SOL[PosCandidat] = 1
 
         #Desactive! le candidat selectionné
         Desactive!(PosCandidat, matrix, actif, m)
-        println("\n Desactive! est fini avec actif: ", actif,"\n Et SOL: ", SOL,  "\n /////////////////////////////////////////////////")
 
     end
 
@@ -54,38 +50,31 @@ function Utilite(cost, matrix, actif, n, m)
     i=1
     #On each column of matrix
     for j=1:n
-        println("\n \n ============================= \n j= ", j, "  i= ", i, "\n util: ", util, "\n actif[i]: ", actif[i])
 
 
         #For each line
         for i=1:m
-            println(" actif=", actif, "\n util: ", util)
 
             #checking if the line is active
             if actif[i]==0
 
-                println("\n i=", i,"  j= ", j, "\n util: ", util)
 
                 K=matrix[i][j]
 
-                println("\n k= ", K)
 
                 util[j]=util[j]+K
 
-                println("\n util: ", util)
 
             end
         end
 
         # dividing the number if iterations of the variable j by its cost (not a zero)
 
-        println("\n ***** conversion: ***** \n ", " Util[j]= ", util[j], "  cost[j] = ", cost[j])
 
-        if util[j]!=false
+        if util[j]!=false #On évide de divisé par 0...
 
             util[j] =  cost[j] / util[j]
 
-        println(" util= ", util)
         end
     end
     return util
@@ -119,12 +108,10 @@ end
 
 function Desactive!(PosCandidat, matrix, actif, m) #On désactive les lignes où est le candidat
 
-    println("\n \n ////////////////////////////////////////// \n Debut de Desactive! \n Var check: \n position candidat: ", PosCandidat, "\n matrice : ", matrix, "\n actif: ", actif, "\n n: ", n, "\n")
     for i=1:m
         if matrix[i][PosCandidat] == 1
             actif[i] = 1
 
         end
     end
-    println("Fin Desactive! ")
 end

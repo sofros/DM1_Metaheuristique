@@ -31,8 +31,6 @@ print("x  = "); println(value.(ip_x))
 target = "B:/Cours/Nantes/Metaheuristique/DM1_Metaheuristique/solveSPP-master/Data"            # path for a standard config on macOS
 #fnames = getfname(target)
 
-couttest = [1,5,6,8,7,3]
-mattest = [[1.0,0.0,1.0,0.0,0.0,1.0],[1.0,1.0,0.0,1.0,1.0,1.0],[0.0,0.0,1.0,0.0,0.0,1.0],[1.0,1.0,0.0,1.0,0.0,0.0],[0.0,0.0,1.0,1.0,1.0,0.0]]
-ntest=6
-mtest=5
-SOL=Glouton(couttest, mattest, mtest, ntest)
+
+
+# ============================================================================ #
