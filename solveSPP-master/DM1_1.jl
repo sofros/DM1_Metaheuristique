@@ -4,7 +4,11 @@
 # =========================================================================== #
 
 
-#Implementing an x0 viable solution huristic
+#Implementing an x0 viable solution huristic with a gluton method
+#receiving an array of lenght()=m , a matrix of size m*n and thoose size
+#returing a Bool array of lenght=n
+#Asked question:
+#Mettre en place une heuristique de construction d’une x0 réalisable.
 
 function Glouton(cost, matrix, n, m)
 
@@ -19,8 +23,9 @@ function Glouton(cost, matrix, n, m)
     SOL = zeros(Float64, n)
 
 
-
+    #Création de la solution
     while actif!=stop
+
         #Foction d'utilité
         util = Utilite(cost, matrix, actif, n, m)
 
@@ -37,7 +42,7 @@ function Glouton(cost, matrix, n, m)
 
     end
 
-    return()
+    return(SOL)
 
 end
 

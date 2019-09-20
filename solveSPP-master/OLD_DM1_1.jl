@@ -41,7 +41,7 @@ function Glouton(cost, matrix, n, m)
 
     end
 
-    return()
+    return(SOL)
 
 end
 
