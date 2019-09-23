@@ -64,7 +64,7 @@ function Utilite(cost, matrix, actif, n, m)
             if actif[i]==0
 
 
-                K=matrix[i][j]
+                K=matrix[i,j]
 
 
                 util[j]=util[j]+K
@@ -114,7 +114,7 @@ end
 function Desactive!(PosCandidat, matrix, actif, m) #On désactive les lignes où est le candidat
 
     for i=1:m
-        if matrix[i][PosCandidat] == 1
+        if matrix[i,PosCandidat] == 1
             actif[i] = 1
 
         end

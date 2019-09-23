@@ -66,7 +66,7 @@ function Utilite(cost, matrix, actif, n, m)
 
                 println("\n i=", i,"  j= ", j, "\n util: ", util)
 
-                K=matrix[i][j]
+                K=matrix[i,j]
 
                 println("\n k= ", K)
 
@@ -121,7 +121,7 @@ function Desactive!(PosCandidat, matrix, actif, m) #On désactive les lignes où
 
     println("\n \n ////////////////////////////////////////// \n Debut de Desactive! \n Var check: \n position candidat: ", PosCandidat, "\n matrice : ", matrix, "\n actif: ", actif, "\n n: ", n, "\n")
     for i=1:m
-        if matrix[i][PosCandidat] == 1
+        if matrix[i,PosCandidat] == 1
             actif[i] = 1
 
         end
