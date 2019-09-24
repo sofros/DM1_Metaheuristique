@@ -30,6 +30,7 @@ function Glouton(cost, matrix, n, m)
         util = Utilite(cost, matrix, actif, n, m)
 
 
+
         #Choix parmis les candidats de util
         PosCandidat = PosMax(util,n)
 
@@ -51,24 +52,20 @@ end
 #Detremine an utility  based on an active (actif) set of matrix's lines
 function Utilite(cost, matrix, actif, n, m)
 
-    util = zeros(Float64, n)
-    i=1
+    util = zeros(Float64, n) #réinitialisation du vecteur
+
     #On each column of matrix
     for j=1:n
 
 
+
         #For each line
         for i=1:m
-
             #checking if the line is active
-            if actif[i]==0
-
+            if actif[i]==0 && i <= m
 
                 K=matrix[i,j]
-
-
                 util[j]=util[j]+K
-
 
             end
         end
@@ -92,11 +89,9 @@ function PosMax(util,n) #On choisie un candidat parmie les différents coûts, p
     Pos=1
     ValCan=0.0
 
-    println("\n +++++++++++++++++++\n Debut PosMax\n ", " Pos: ", Pos, " ValCan: ", ValCan, "\n util: ", util, "\n n: ", n, "\n" )
 
     for i=1:n
 
-        println("\n boucle: ", i)
         if util[i] > ValCan
 
             ValCan = util[i]
@@ -104,7 +99,6 @@ function PosMax(util,n) #On choisie un candidat parmie les différents coûts, p
         end
     end
 
-    println("\n PosMax est fini avec: \n Max: ", ValCan, " Position: ", Pos, "\n")
     return Pos
 end
 
