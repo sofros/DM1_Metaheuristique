@@ -9,6 +9,13 @@
 #returning another array of length m
 include("DM1_1.jl")
 
+function calculz(x,costs,m)
+    z = 0
+    for i in 1:m
+        z+= x[i]*costs[i]
+    end
+    return z
+end
 
 function kpexchange!(
     x, # Notre solution
@@ -30,7 +37,6 @@ function kpexchange!(
                 sol = kpexchange(x_prime,k-1,p,m,zbest,z-gains[i],couts, gain, xbest)
             end
         end
-
     elseif p > 0
         for j in m
             if x[j] == 0
