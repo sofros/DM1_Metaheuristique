@@ -9,7 +9,7 @@ include("loadSPP.jl")
 include("setSPP.jl")
 include("getfname.jl")
 include("DM1_1.jl")
-
+include("DM1_2.jl")
 # =========================================================================== #
 
 # Setting the data
