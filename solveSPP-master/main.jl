@@ -9,7 +9,7 @@ include("loadSPP.jl")
 include("setSPP.jl")
 include("getfname.jl")
 include("DM1_1.jl")
-include("DM1_2.jl")
+
 # =========================================================================== #
 
 # Setting the data
@@ -35,14 +35,17 @@ fnames = getfname(target)
 for f in fnames
     println("=================")
     cost, matrix, n, m = loadSPP(f)
-    @time a =Glouton(cost, matrix, n, m)
-    println(f,"\n Solution: ",a)
+    @time SOL =Glouton(cost, matrix, n, m)
+    println(f,"\n Solution: ",SOL)
 end
 cd("../")
 
 
 # ============================================================================ #
+#n = 9
+#m = 7
 #a  = zeros(Float64, n)
-#matrix = [[1;1;1;0;1;0;1;1;0];[0;1;1;0;0;0;0;1;0];[0;1;0;0;1;1;0;1;1];[0;0;0;1;0;0;0;0;0];[1;0;1;0;1;1;0;0;1];[0;1;1;0;0;0;1;0;1];[1;0;0;1;1;0;0;1;1]]
+#cost = [10, 5, 8, 6, 9, 13, 11, 4, 6]
+#matrix = [1 1 1 0 1 0 1 1 0; 0 1 1 0 0 0 0 1 0;0 1 0 0 1 1 0 1 1;0 0 0 1 0 0 0 0 0;1 0 1 0 1 1 0 0 1;0 1 1 0 0 0 1 0 1; 1 0 0 1 1 0 0 1 1]
 #a = Glouton(cost, matrix, n, m)
 #println("Solution: ",a)
