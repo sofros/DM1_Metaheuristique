@@ -75,10 +75,8 @@ function kpexchange!(
                 #println("======================")
                 selec = true # juste une initialisation
                 # ici on regarde si on peu rajouter notre variable
-                #println("construction",crts)
-                println(typeof(crts))
-                for l = 1:m
-                    selec = selec && ( (crts[l] * matrix[l,j]) == 0)
+                for l in 1:m
+                    selec = selec && ( crts[l] + matrix[j,l] <= 1)
                 end
 
 
