@@ -18,6 +18,14 @@ function calculz(x,costs,m)
     return z
 end
 
+function select(crts,matrix,m,j)
+    selec = true # juste une initialisation
+    for l in 1:m
+        selec = selec && (( crts[l] + matrix[j,l]) <= 1)
+        println(crts[l] + matrix[j,l] )
+    end
+    return selec
+end
 function kpexchange!(
     x, # Notre solution
     k::Int,  # le nombre d'objet à retirer du conteneur
@@ -52,8 +60,6 @@ function kpexchange!(
                 for crt in 1:m
                     if matrix[crt,i] == 1
                         crts[crt] = 0
-                        println("k CRTS :", crts)
-                        println("mat    :",matrix[.,i])
                     end
                     #println("destruction",crts)
                 end
@@ -73,17 +79,12 @@ function kpexchange!(
                 #println("======================")
                 #println("==> x[",j,"] = 0")
                 #println("======================")
-                selec = true # juste une initialisation
+
                 # ici on regarde si on peu rajouter notre variable
-                for l in 1:m
-                    selec = selec && ( crts[l] + matrix[j,l] <= 1)
-                end
-
-
                 #println("crts =", crts, "" )
                 x_prime = copy(sol[1])
 
-                if selec
+                if select(crts,matrix,m,j)
 
                     #println("==> copie effectuée")
                     x_prime[j] = 1  # on rajoute la variable j à notre solution
