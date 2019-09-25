@@ -21,8 +21,8 @@ end
 function select(crts,matrix,m,j)
     selec = true # juste une initialisation
     for l in 1:m
-        selec = selec && (( crts[l] + matrix[j,l]) <= 1)
-        println(crts[l] + matrix[j,l] )
+        selec = selec && (( crts[l] + matrix[l,j]) <= 1)
+        #println(crts[l] + matrix[j,l] )
     end
     return selec
 end
