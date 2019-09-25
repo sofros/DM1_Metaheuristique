@@ -9,6 +9,7 @@ include("loadSPP.jl")
 include("setSPP.jl")
 include("getfname.jl")
 include("DM1_1.jl")
+include("DM1_2.jl")
 
 # =========================================================================== #
 
@@ -36,8 +37,23 @@ for f in fnames
     println("=================")
     println(f, "\n")
     cost, matrix, n, m = loadSPP(f)
-    @time SOL =Glouton(cost, matrix, n, m)
+    @time (SOL,crts,z) =Glouton(cost, matrix, n, m)
+    @time (SOL) = kpexchange!(
+        SOL, # Notre solution
+        1,  # le nombre d'objet à retirer du conteneur
+        1, # le nombre d'objet à rajouter dans le conteneur
+        n::Int,  # taille de x
+        m::Int, # nombre de contraintes
+        z,  # solution trouvée
+        z, #solution actuelle
+        cost, # tableau des coûts de x
+        SOL, #meilleur solution trouvée
+        crts, # vecteur des contraintes (on suppose que pout tout i crts[i] =< 1)
+        matrix # la matrice des contraintes
+        )
+        println("Solution après amelioration: ", SOL)
     #println(f,"\n Solution: ",SOL)
+    #println("\n actif: ",a2)
 end
 cd("../")
 

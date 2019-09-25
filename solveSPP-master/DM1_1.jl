@@ -27,13 +27,15 @@ function Glouton(cost, matrix, n, m)
     #initialisation de la Solution
     SOL = zeros(Float64, n)
 
-#    println( "\n Matrix: ", matrix, "\n Cost: ", cost,"\n n= ", n, "   m= ", m,"\n actif: ", actif, "\n stop: ", stop1, "\n util: ", util, "\n SOL: ", SOL, "\n \n")
+    actif2= actif= zeros(Bool, m) # array utilie pour l'amélioration
+
+#    println( "\n Matrix: ", "\n Cost: ", cost,"\n n= ", n, "   m= ", m,"\n actif: ", actif, "\n stop: ", stop1, "\n util: ", util, "\n SOL: ", SOL, "\n \n")
 
     #Création de la solution
-    while actif!=stop1 && varactive!=stop2
+    while actif!=stop1 && varactive!=stop2 #&& actif2 != stop1
 #      println("++++++++++++++++++++++++++++++++++++++++")
-#       println("\n actif : ", actif, "\n stop1 : ", stop1 , "\n varactive : " , varactive , "\n stop2 : ", stop2)
-#       println("++++++++++++++++++++++++++++++++++++++++")
+#      println("\n actif : ", actif, "\n stop1 : ", stop1 , "\n varactive : " , varactive , "\n stop2 : ", stop2)
+#      println("++++++++++++++++++++++++++++++++++++++++")
 
         #Foction d'utilité
         util = Utilite(cost, matrix, actif, n, m , varactive)
@@ -48,11 +50,11 @@ function Glouton(cost, matrix, n, m)
         SOL[PosCandidat] = 1
 
         #Desactive! le candidat selectionné
-        Desactive!(PosCandidat, matrix, actif, m, varactive,n)
+        Desactive!(PosCandidat, matrix, actif, m, varactive,n , actif2) #si besoin ajouter actif2 en parametre
 
     end
-    println(calculz(SOL,cost,n))
-    return(SOL)
+    println("Solution avant améliration: " ,calculz(SOL,cost,n), SOL)
+    return(SOL, actif, calculzz(SOL,cost,n))
 
 end
 
@@ -114,20 +116,22 @@ end
 
 
 # =========================================================================== #
-
-function Desactive!(PosCandidat, matrix, actif, m , varactive , n) #On désactive les lignes où est le candidat
+#On désactive les lignes où est le candidat
+function Desactive!(PosCandidat, matrix, actif, m , varactive , n, actif2) #si besoin passer actif2 en parametre
 #println("\n======================= desactive ==============================")
     for i=1:m
 #        println("\n Boucle i: ", i)
         if matrix[i,PosCandidat] == 1
 #            println("\n If matrix[i,PosCandidat] == 1: " , matrix[i,PosCandidat])
             actif[i] = 1
+#            actif2[i] = 1
 #            println("\n actif[i] = 1: ", actif[i])
             for j=1:n
 #                println("\n for j=1:n ; j: ", j)
                 if matrix[i,j] ==1
 #                    println("\n if matrix[i,j] ==1 :", matrix[i,j])
                     varactive[j] = 0
+                    desative2!(j,matrix,actif2, m)
 #                    println("\n varactive[j] = 0: ", varactive)
                 end
             end
@@ -136,8 +140,18 @@ function Desactive!(PosCandidat, matrix, actif, m , varactive , n) #On désactiv
 end
 
 #=========================================================================#
+function desative2!(j,matrix,actif2, m)
+    for i = 1:m
+        if matrix[i,j] == 1
+            actif2[i] = 1
+        end
+    end
+end
 
-function calculz(x,costs,m)
+
+#=========================================================================#
+
+function calculzz(x,costs,m)
     z = 0
     for i in 1:m
         z+= x[i]*costs[i]
