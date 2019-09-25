@@ -51,7 +51,7 @@ function Glouton(cost, matrix, n, m)
         Desactive!(PosCandidat, matrix, actif, m, varactive,n)
 
     end
-
+    println(calculz(SOL,cost,n))
     return(SOL)
 
 end
@@ -133,4 +133,14 @@ function Desactive!(PosCandidat, matrix, actif, m , varactive , n) #On désactiv
             end
         end
     end
+end
+
+#=========================================================================#
+
+function calculz(x,costs,m)
+    z = 0
+    for i in 1:m
+        z+= x[i]*costs[i]
+    end
+    return z
 end

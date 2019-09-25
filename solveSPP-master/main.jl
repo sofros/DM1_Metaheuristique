@@ -34,9 +34,10 @@ fnames = getfname(target)
 #===================================================#
 for f in fnames
     println("=================")
+    println(f, "\n")
     cost, matrix, n, m = loadSPP(f)
     @time SOL =Glouton(cost, matrix, n, m)
-    println(f,"\n Solution: ",SOL)
+    #println(f,"\n Solution: ",SOL)
 end
 cd("../")
 
