@@ -8,6 +8,7 @@
 #taking an array of lenght m
 #returning another array of length m
 include("DM1_1.jl")
+_ZBEST_ = 0
 
 function calculz(x,costs,m)
     z = 0
@@ -21,8 +22,9 @@ end
 function select(crts,matrix,m,j)
     selec = true # juste une initialisation
     for l in 1:m
-        selec = selec && (( crts[l] + matrix[l,j]) <= 1)
-        #println(crts[l] + matrix[j,l] )
+        selec = selec && (( crts[l] * matrix[j,l]) == 0)
+        println( matrix )
+
     end
     return selec
 end
@@ -32,7 +34,6 @@ function kpexchange!(
     p::Int, # le nombre d'objet à rajouter dans le conteneur
     n::Int,  # taille de x
     m::Int, # nombre de contraintes
-    zbest,  # solution trouvée
     z, #solution actuelle
     couts, # tableau des coûts de x
     xbest, #meilleur solution trouvée
@@ -41,7 +42,7 @@ function kpexchange!(
     )
 #println("===============kp exchange =====================")
     println("x = ",x)
-    sol=(xbest,zbest)
+    sol=(xbest,_ZBEST_)
     if k > 0
 
         #println("========= k =============")
@@ -65,11 +66,11 @@ function kpexchange!(
                 end
                 #println("======================")
                 #println("Appel récursif k")
-            sol = kpexchange!(x_prime,k-1,p,n,m,zbest,z-couts[i],couts, xbest,crts,matrix)
+            sol = kpexchange!(x_prime,k-1,p,n,m,z-couts[i],couts, xbest,crts,matrix)
             end
         end
     elseif p > 0
-            sol = kpexchange!(x,k,p-1,n,m,zbest,z,couts, xbest,crts,matrix)
+            sol = kpexchange!(x,k,p-1,n,m,z,couts, xbest,crts,matrix)
         #println("========= p =============")
         for j = 1:n
             #println("======================")
@@ -93,11 +94,11 @@ function kpexchange!(
                     #println("Appel récursif")
                     z = calculz(x_prime,couts,m)
 
-                    if z > zbest #on regarde si on a amélioré notre solution
+                    if z > _ZBEST_ #on regarde si on a amélioré notre solution
                         #println("nouvelle solution : z = ",z)
                         #println("Z passe en meilleur solution")
                         xbest = x_prime
-                        zbest  = z
+                        _ZBEST_  = z
 
                     end
                     println("P CRTS :", crts)
@@ -106,12 +107,12 @@ function kpexchange!(
                             crts[crt] = 1
                         end
                     end
-                    #println("nouvelle solution : z = ",zbest)
+                    #println("nouvelle solution : z = ",_ZBEST_)
                 end
                 #println("Appel récursif p")
             end
         end
     end
-    #println("zbest = ", zbest)
-    return (xbest,zbest)
+    #println("_ZBEST_ = ", _ZBEST_)
+    return (xbest,_ZBEST_)
 end

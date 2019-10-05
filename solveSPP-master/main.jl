@@ -9,7 +9,7 @@ include("loadSPP.jl")
 include("setSPP.jl")
 include("getfname.jl")
 include("DM1_1.jl")
-include("DM1_2.jl")
+include("DM1_2_corrige.jl")
 
 # =========================================================================== #
 
@@ -28,8 +28,8 @@ include("DM1_2.jl")
 
 # =========================================================================== #
 
-# Collecting the names of instances to solve
-target = "B:/Cours/Nantes/Metaheuristique/DM1_Metaheuristique/solveSPP-master/Data"            # path for a standard config on macOS
+# Collecting the names of instances to solve C:Users/Documents/ORO/Metaheuristiques/DM1_Metaheuristique/
+target = "C:/Users/Emmanuel/Documents/ORO/Métaheurisques/DM1_Metaheuristique/solveSPP-master"            # path for a standard config on macOS
 fnames = getfname(target)
 
 #===================================================#
@@ -37,6 +37,7 @@ for f in fnames
     println("=================")
     println(f, "\n")
     cost, matrix, n, m = loadSPP(f)
+    println(matrix)
     @time (SOL,crts,z) =Glouton(cost, matrix, n, m)
     @time (SOL) = kpexchange!(
         SOL, # Notre solution
