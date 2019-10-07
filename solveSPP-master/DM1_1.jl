@@ -26,7 +26,7 @@ function Glouton(cost, matrix, n, m)
     util = zeros(Float64, n)
 
     #initialisation de la Solution
-    SOL = zeros(Float64, n)
+    SOL = zeros(Bool, n)
 
 #    println( "\n Matrix: ", matrix, "\n Cost: ", cost,"\n n= ", n, "   m= ", m,"\n desactive_condition: ", desactive_condition, "\n stop: ", stop1, "\n util: ", util, "\n SOL: ", SOL, "\n \n")
 
@@ -55,7 +55,7 @@ function Glouton(cost, matrix, n, m)
 
 
         #On ajoute le candidat à la solution
-        SOL[PosCandidat] = 1
+        SOL[PosCandidat] = true
 
         #Desactive! le candidat selectionné
         Desactive!(PosCandidat, matrix, desactive_condition, m, variables_actives,n)

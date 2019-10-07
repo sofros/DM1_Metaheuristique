@@ -32,7 +32,8 @@ include("DM2_2.jl")
 # =========================================================================== #
 
 # Collecting the names of instances to solve C:Users/Documents/ORO/Metaheuristiques/DM1_Metaheuristique/
-target = "C:/Users/Emmanuel/Documents/ORO/Métaheurisques/DM1_Metaheuristique/solveSPP-master"            # path for a standard config on macOS
+target = "B:/Cours/Nantes/Metaheuristique/DM1_Metaheuristique/solveSPP-master/Data"            # path for a standard config on macOS
+cd
 fnames = getfname(target)
 
 #===================================================#

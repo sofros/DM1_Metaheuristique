@@ -15,17 +15,13 @@ function GRASP(cost, matrix, n, m, alpha)
     util = zeros(Float64, n)
 
     #initialisation de la Solution
-    SOL = zeros(Float64, n)
+    SOL = zeros(Bool, n)
 
 #    println( "\n Matrix: ", matrix, "\n Cost: ", cost,"\n n= ", n, "   m= ", m,"\n desactive_condition: ", desactive_condition, "\n stop: ", stop1, "\n util: ", util, "\n SOL: ", SOL, "\n \n")
 
 #    ite = 0
     #Création de la solution
     while desactive_condition!=stop1 && variables_actives!=stop2
-
-
-
-
 
 #      println("\n ++++++++++++++++++++++++++++++++++++++++")
 #      println("\n itération: ", ite)
@@ -45,7 +41,7 @@ function GRASP(cost, matrix, n, m, alpha)
 
 
         #On ajoute le candidat à la solution
-        SOL[PosCandidat] = 1
+        SOL[PosCandidat] = true
 
         #Desactive! le candidat selectionné
         Desactive!(PosCandidat, matrix, desactive_condition, m, variables_actives,n)
@@ -56,7 +52,8 @@ function GRASP(cost, matrix, n, m, alpha)
     Z = calculz(SOL,cost,n)
 #    println("Solution GRASP: " , Z)
 #    return(SOL, desactive_condition, Z)
-    return(SOL, Z)
+
+    return(SOL, Z, desactive_condition)
 
 end
 

@@ -1,5 +1,6 @@
 include("DM1_1.jl")
 include("DM2_1.jl")
+include("DM1_2_corrige.jl")
 
 function ReactiveGRASP(matrix,cost, n, m, ite, coupe,temps)
 
@@ -14,7 +15,7 @@ function ReactiveGRASP(matrix,cost, n, m, ite, coupe,temps)
         append!(evol_p,p)
         while (cpt <= ite)
             for i in 1:length(p)
-                (SOL,z) = GRASP(cost, matrix, n, m, p[i])
+                (SOL,z, crts) = GRASP(cost, matrix, n, m, p[i])
                 z_cumul[i] += z
             end
 
@@ -23,7 +24,13 @@ function ReactiveGRASP(matrix,cost, n, m, ite, coupe,temps)
             prob=rand(Float64)
 
             alpha_choisit = choix_alpha(p,prob)
-            (SOL,z) = GRASP(cost, matrix, n, m, p[alpha_choisit])
+            (SOL, z, crts) = GRASP(cost, matrix, n, m, p[alpha_choisit])
+            println("================")
+            println(z)
+
+            #Amelioration
+            (SOL, z) = exchange1_2(SOL,n,m,cost,crts,matrix)
+
 
             nb_iteration[alpha_choisit] += 1
             z_cumul[alpha_choisit] += z
@@ -35,6 +42,7 @@ function ReactiveGRASP(matrix,cost, n, m, ite, coupe,temps)
             if z < zWorst
                 zWorst = z
             end
+
         end
 
         recalcul_p!(p,z_cumul,zBest,zWorst,nb_iteration,evol_p)
@@ -44,7 +52,7 @@ function ReactiveGRASP(matrix,cost, n, m, ite, coupe,temps)
     end
 #    println("^^^^^^^^ Fin ReactiveGRASP ^^^^^^^^")
     println("zBest: ", zBest, "    zWorst: ", zWorst)
-
+    println(evol_p)
     return(evol_p)
 end
 

@@ -1,6 +1,36 @@
 
 
 
+#=
+function exchange1_1(solution,n,m,couts,crts,matrix)
+    x_best = Solution(solution,calculz(solution,couts,n))
+    # notre boucle k
+    for i in 1:n
+        if  x_best.x[i]  == 1
+            x_prime = deepcopy(x_best)
+            x_prime.x[i] = 0
+            x_prime.objectif = calculz(x_prime.x,couts,n)
+            # notre boucle p
+            for j = 1:n
+                if x_prime.x[j] == 0 && j != i # j != i car ça sers à rien de remettre une variable enlevée
+                    x_seconde = deepcopy(x_prime)
+                    x_seconde.x[j] = 1
+                    x_seconde.objectif = calculz(x_prime.x,couts,n)
+
+                    #on met à jour notre meilleur Solution
+                    if x_seconde.objectif > x_best.objectif
+                        x_best = deepcopy(x_seconde)
+                    end
+                end
+            end
+        end
+    end
+    #x,objectif= Solution.x
+    return(x_best.x,x_best.objectif)
+end
+=#
+
+
 
 #Reactive grasp final
 
