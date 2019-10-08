@@ -11,8 +11,8 @@ include("getfname.jl")
 #include("DM1_1.jl")
 #include("DM1_2.jl")
 #include("DM2_1.jl")
-include("DM2_2.jl")
-#include("brouillon.jl")
+#include("DM2_2.jl")
+include("brouillon.jl")
 
 # =========================================================================== #
 
@@ -46,7 +46,7 @@ for f in fnames
     #    @time (SOL,z) =Glouton(cost, matrix, n, m)
     #    @time (SOL,z) =GRASP(cost, matrix, n, m, 0.9)
     #    @time (SOL,z) =Glouton(cost, matrix, n, m)
-        @time proba = ReactiveGRASP(matrix,cost, n, m, 15, 5, 0, 2)
+        @time proba = ReactiveGRASP(matrix,cost, n, m, 15, 5,  2)
     #end
 end
 cd("../")

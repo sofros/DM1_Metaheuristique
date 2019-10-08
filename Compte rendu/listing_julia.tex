@@ -1,0 +1,168 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[top=10mm, bottom=10mm, left=20mm, right=20mm]{geometry}
+
+% individualisation des parametres de la page
+\parskip8pt
+\setlength{\topmargin}{-25mm}
+\setlength{\textheight}{250mm}
+
+% Sources de depart de l'adaptation de listing a julia :
+% 1) https://gist.github.com/chi-feng/6589066/4cda665ff0d93b8611a0e047a6a06d6a8ecd9b4e
+% 2) https://groups.google.com/forum/#!topic/julia-dev/HHjlYalHXY8
+
+\usepackage{inconsolata} % very nice fixed-width font included with texlive-full
+\usepackage[usenames,dvipsnames]{color} % more flexible names for syntax highlighting colors
+\usepackage{listings}
+
+\lstset{
+basicstyle=\ttfamily, 
+columns=fullflexible, % make sure to use fixed-width font, CM typewriter is NOT fixed width
+numbers=left, 
+numberstyle=\small\ttfamily\color{Gray},
+stepnumber=1,              
+numbersep=10pt, 
+numberfirstline=true, 
+numberblanklines=true, 
+tabsize=4,
+lineskip=-1.5pt,
+extendedchars=true,
+breaklines=true,        
+keywordstyle=\color{Blue}\bfseries,
+identifierstyle=, % using emph or index keywords
+commentstyle=\sffamily\color{OliveGreen},
+stringstyle=\color{Maroon},
+showstringspaces=false,
+showtabs=false,
+upquote=false,
+texcl=true % interpet comments as LaTeX
+}
+
+\lstdefinelanguage{julia}
+{
+  keywordsprefix=\@,
+  morekeywords={
+    exit,whos,edit,load,is,isa,isequal,typeof,tuple,ntuple,uid,hash,finalizer,convert,promote,
+    subtype,typemin,typemax,realmin,realmax,sizeof,eps,promote_type,method_exists,applicable,
+    invoke,dlopen,dlsym,system,error,throw,assert,new,Inf,Nan,pi,im,begin,while,for,in,return,
+    break,continue,macro,quote,let,if,elseif,else,try,catch,end,bitstype,ccall,do,using,module,
+    import,export,importall,baremodule,immutable,local,global,const,Bool,Int,Int8,Int16,Int32,
+    Int64,Uint,Uint8,Uint16,Uint32,Uint64,Float32,Float64,Complex64,Complex128,Any,Nothing,None,
+    function,type,typealias,abstract
+  },
+  sensitive=true,
+  morecomment=[l]{\#},
+%  morecomment=[s]{# =}{=#},
+  morestring=[b]',
+  morestring=[b]" 
+}
+
+
+\title{\textbf{Métaheuristiques}\\Exemple d'utilisation de \textit{listing} adapté à Julia}
+\author{Nilson Toula }
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+%
+% =================================================================================
+%
+\section{Code source}
+
+\lstset{literate=
+  {α}{{$\alpha$}}1 {Δ}{{$\Delta$}}1
+  {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+  {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+  {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
+  {À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1
+  {ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1
+  {Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1
+  {â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1
+  {Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1
+  {œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1
+  {ű}{{\H{u}}}1 {Ű}{{\H{U}}}1 {ő}{{\H{o}}}1 {Ő}{{\H{O}}}1
+  {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1
+  {€}{{\EUR}}1 {£}{{\pounds}}1
+}
+
+
+
+\lstset{language=julia}
+
+{
+\begin{lstlisting}
+# --------------------------------------------------------------------------- 
+# Loading an instance of SPP (format: OR-library)
+
+function loadSPP(fname)
+    f=open(fname)
+    # Lecture du nbre de contraintes (m) et de variables (n)
+    m, n = parse.(Int, split(readline(f)) )
+    # Lecture des n coefficients de la fonction economique et cree le vecteur d'entiers C
+    C = parse.(Int, split(readline(f)) )
+    # Lecture des m contraintes et reconstruction de la matrice binaire A
+    A=zeros(Int, m, n)
+    for i=1:m
+        # Lecture du nombre d'elements non nuls sur la contrainte i (non utilise)
+        readline(f)
+        # Lecture des indices des elements non nuls sur la contrainte i
+        for valeur in split(readline(f))
+          j = parse(Int, valeur)
+          A[i,j]=1
+        end
+    end
+    close(f)
+    return C, A
+end
+
+# --------------------------------------------------------------------------- 
+# Construction gloutonne d'une solution admissible de SPP
+
+function GreedyConstruction(C_in, A_in)
+
+   # A completer...
+   
+    return x, z
+end
+
+# --------------------------------------------------------------------------- 
+# Amelioration gloutonne par recherche locale d’une solution de SPP
+
+function GreedyAmelioration(C_in, A_in, x_in, z_in)
+
+   # A completer...
+   
+    return xbest, zbest
+end
+
+# --------------------------------------------------------------------------- 
+# Exemple (compliant Julia v0.7 et ulterieur)
+
+using Printf
+fname = "Desktop/Data/pb_200rnd0100.dat"
+
+C, A = loadSPP(fname)
+
+@time x, z = GreedyConstruction(C, A)
+@printf("z(xInit) = %d \n\n",z)
+
+@time xbest, zbest = GreedyAmelioration(C, A, x, z)
+@printf("z(xBest) = %d \n\n",zbest)
+\end{lstlisting}
+}
+%
+% =================================================================================
+%
+\section{Exemple d'exécution}
+
+\begin{verbatim}
+  0.299466 seconds (1.97 M allocations: 532.954 MiB, 11.09% gc time)
+z(xInit) = 351 
+
+  0.020743 seconds (9.12 k allocations: 70.348 MiB, 19.62% gc time)
+z(xBest) = 357 
+\end{verbatim}
+
+\end{document}

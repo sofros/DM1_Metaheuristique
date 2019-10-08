@@ -1,0 +1,377 @@
+% =====================================================================================
+% Document : rendu du DM2
+% Auteur : Xavier Gandibleux , Nilson Toula, Emmanuel Rochet
+% Année académique : 2019-2020
+
+
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[top=10mm, bottom=10mm, left=20mm, right=20mm]{geometry}
+% passe en mode large sur la page A4
+\usepackage{a4wide} 
+
+% document francisé
+\usepackage[francais]{babel} 
+
+
+
+% individualisation des parametres de la page
+\parskip8pt
+\setlength{\topmargin}{-25mm}
+\setlength{\textheight}{250mm}
+
+% Sources de depart de l'adaptation de listing a julia :
+% 1) https://gist.github.com/chi-feng/6589066/4cda665ff0d93b8611a0e047a6a06d6a8ecd9b4e
+% 2) https://groups.google.com/forum/#!topic/julia-dev/HHjlYalHXY8
+
+\usepackage{inconsolata} % very nice fixed-width font included with texlive-full
+\usepackage[usenames,dvipsnames]{color} % more flexible names for syntax highlighting colors
+\usepackage{listings}
+
+\lstset{
+basicstyle=\ttfamily, 
+columns=fullflexible, % make sure to use fixed-width font, CM typewriter is NOT fixed width
+numbers=left, 
+numberstyle=\small\ttfamily\color{Gray},
+stepnumber=1,              
+numbersep=10pt, 
+numberfirstline=true, 
+numberblanklines=true, 
+tabsize=4,
+lineskip=-1.5pt,
+extendedchars=true,
+breaklines=true,        
+keywordstyle=\color{Blue}\bfseries,
+identifierstyle=, % using emph or index keywords
+commentstyle=\sffamily\color{OliveGreen},
+stringstyle=\color{Maroon},
+showstringspaces=false,
+showtabs=false,
+upquote=false,
+texcl=true % interpet comments as LaTeX
+}
+
+\lstdefinelanguage{julia}
+{
+  keywordsprefix=\@,
+  morekeywords={
+    exit,whos,edit,load,is,isa,isequal,typeof,tuple,ntuple,uid,hash,finalizer,convert,promote,
+    subtype,typemin,typemax,realmin,realmax,sizeof,eps,promote_type,method_exists,applicable,
+    invoke,dlopen,dlsym,system,error,throw,assert,new,Inf,Nan,pi,im,begin,while,for,in,return,
+    break,continue,macro,quote,let,if,elseif,else,try,catch,end,bitstype,ccall,do,using,module,
+    import,export,importall,baremodule,immutable,local,global,const,Bool,Int,Int8,Int16,Int32,
+    Int64,Uint,Uint8,Uint16,Uint32,Uint64,Float32,Float64,Complex64,Complex128,Any,Nothing,None,
+    function,type,typealias,abstract
+  },
+  sensitive=true,
+  morecomment=[l]{\#},
+%  morecomment=[s]{# =}{=#},
+  morestring=[b]',
+  morestring=[b]" 
+}
+
+
+\title{\textbf{Métaheuristiques}\\Exemple d'utilisation de \textit{listing} adapté à Julia}
+\author{Xavier Gandibleux }
+\date{\today}
+
+
+
+
+\begin{document}
+
+\section*{Livrable du devoir maison 2 : \\ Métaheuristique GRASP, ReactiveGRASP et extensions}
+
+%
+% -----------------------------------------------------------------------------------------------------------------------------------------------------
+%
+
+\vspace{5mm}
+\noindent
+\fbox{
+  \begin{minipage}{0.97 \textwidth}
+    \begin{center}
+      \vspace{1mm}
+        \Large{Présentation succincte de GRASP appliqué sur le SPP}
+      \vspace{1mm}
+    \end{center}
+  \end{minipage}
+}
+\vspace{2mm}
+
+\noindent
+Présenter l'algorithme mis en oeuvre. Illustrer sur un exemple didactique (poursuivre avec l'exemple pris en DM1). Présenter vos choix de mise en oeuvre.
+
+Pour cette partie, notre programme se décompose en 
+%%% Mettre ici le nombres de parties: 2 si pas de path relinking, 3 sinon
+parties, la premières est une construction gloutonne prennant notament un paramètre alpha en facteur.
+
+%
+% =================================================================================
+%
+\section{Code source}
+
+\lstset{literate=
+  {α}{{$\alpha$}}1 {Δ}{{$\Delta$}}1
+  {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+  {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+  {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
+  {À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1
+  {ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1
+  {Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1
+  {â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1
+  {Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1
+  {œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1
+  {ű}{{\H{u}}}1 {Ű}{{\H{U}}}1 {ő}{{\H{o}}}1 {Ő}{{\H{O}}}1
+  {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1
+  {€}{{\EUR}}1 {£}{{\pounds}}1
+}
+
+
+
+\lstset{language=julia}
+
+{
+\begin{lstlisting}
+function GRASP(
+    cost, #Une array représentant les couts, de taille n
+    matrix, #une matrice de taille m*n representant les contrantes
+    n, #nombre de variables
+    m, #nombbre de contraintes
+    alpha # le alpha que nous allons utiliser
+     )
+
+     #intitialisation des listes utilisé
+     (desactive_condition, stop1, variables_actives, stop2, util, SOL) = initaliser(m,n)
+
+    #Création de la solution
+    while desactive_condition!=stop1 && variables_actives!=stop2
+
+        util = Utilite(cost, matrix, desactive_condition, n, m , variables_actives, stop1, stop2) #Foction d'utilité
+
+        PosCandidat::Int64 = choixcandidat(util, alpha) #Choix parmis les candidats de util
+
+        SOL[PosCandidat] = true #On ajoute le candidat à la solution
+
+        Desactive!(PosCandidat, matrix, desactive_condition, m, variables_actives,n) #Desactive! le candidat selectionné et les conditions où il apparait
+    end
+
+    Z = calculz(SOL,cost,n)
+    return(SOL, Z, desactive_condition)
+
+end
+
+# =========================================================================== #
+function initaliser(m,n)
+    #Creating a set of lines that will be avaluated
+    desactive_condition= zeros(Bool, m) #si desactive_condition[j]=0 la ligne sera évalué
+    stop1= ones(Bool,m) #la une condition d'arret, s'active quand toutes les lignes ont été traité
+
+    #Creation the an array of activated variables
+    variables_actives = ones(Bool, n) #Si variables_actives[i]=1, la variable sera traité
+    stop2= zeros(Bool , n) #condition d'arret, s'active quand toutes les variables sont traité
+
+    #On crée une liste contenant nos utilités
+    util = zeros(Float64, n)
+
+    #Initialisation de la Solution
+    SOL = zeros(Bool, n)
+
+    return(desactive_condition, stop1, variables_actives, stop2, util, SOL)
+end
+
+ #=================================================================================#
+
+#Détermine l'utilité des éléments basé sur leur nombres d'apparition dans les condition et leur valeur dans les couts
+function Utilite(cost, matrix, desactive_condition, n, m , variables_actives, stop1, stop2)
+
+    util = zeros(Float64, n) #réinitialisation du vecteur
+
+    for j=1:n #Pour chaque variable
+            if variables_actives[j] == 1 #on verifie si la variable est active
+                    for i=1:m #Pour chaque condition
+                        if desactive_condition[i]==0 #On verifie si la condition doit être évalué
+                            K=matrix[i,j]
+                            util[j]=util[j]+K
+                        end
+                    end
+
+                #On divise le le cout de chqaue variable par son nombre d'appartition dans les conditions
+                if util[j]!=false #On évide de divisé par 0...
+                    util[j] =  cost[j] / util[j]
+                else #Si la variable n'a pas été décompté, on la désactive
+                    variables_actives[j] = 0
+                end
+            end
+    end
+    return util
+end
+#============================================================#
+
+function Desactive!(PosCandidat, matrix, desactive_condition, m , variables_actives , n) #On désactive les lignes où est le candidat
+    for i=1:m
+        if matrix[i,PosCandidat] == 1
+            desactive_condition[i] = 1
+            for j=1:n
+                if matrix[i,j] ==1
+                    variables_actives[j] = 0
+                end
+            end
+        end
+    end
+end
+
+#=========================================================================#
+
+function calculz(x,costs,m)
+    z = 0
+    for i in 1:m
+        z+= x[i]*costs[i]
+    end
+    return z
+end
+
+#==========================================#
+
+function choixcandidat(util, alpha) #Permet de construire et de choisir un candidat dans la liste de candidat restreint
+    max = maximum(util)
+    min = minimum(util)
+    Candidat_Restreint = Float64[]
+    cpt::Int=1
+    for i in 1:length(util)
+        if util[i]>= min+(alpha*(max-min))
+            push!(Candidat_Restreint,i)
+        end
+    end
+    prob = rand(1:length(Candidat_Restreint))
+    return(Candidat_Restreint[prob])
+end
+
+\end{lstlisting}
+}
+%
+% =================================================================================
+%
+
+%
+% -----------------------------------------------------------------------------------------------------------------------------------------------------
+%
+
+\vspace{5mm}
+\noindent
+\fbox{
+  \begin{minipage}{0.97 \textwidth}
+    \begin{center}
+      \vspace{1mm}
+        \Large{Présentation succincte de ReactiveGRASP appliqué sur le SPP}
+      \vspace{1mm}
+    \end{center}
+  \end{minipage}
+}
+\vspace{2mm}
+
+\noindent
+Présenter l'algorithme mis en oeuvre. Illustrer sur un exemple didactique (poursuivre avec l'exemple pris en DM1). Présenter vos choix de mise en oeuvre.
+
+%
+% -----------------------------------------------------------------------------------------------------------------------------------------------------
+%
+
+\vspace{5mm}
+\noindent
+\fbox{
+  \begin{minipage}{0.97 \textwidth}
+    \begin{center}
+      \vspace{1mm}
+        \Large{Expérimentation numérique de GRASP}
+      \vspace{1mm}
+    \end{center}
+  \end{minipage}
+}
+\vspace{2mm}
+
+\noindent
+Présenter le protocole d'expérimentation (environnement matériel; budget de calcul; condition(s) d'arrêt; réglage des paramètres).
+
+\noindent
+Rapporter graphiquement vos résultats selon $\hat{z}_{min}$, $\hat{z}_{max}$, $\hat{z}_{moy}$ mesurés à intervalles réguliers (exemple de pas de 10 secondes).
+
+\noindent
+Rapporter l'étude de l'influence du paramètre $\alpha$.
+
+\noindent
+Présenter sous forme de tableau les résultats finaux obtenus pour les 10 instances sélectionnées.
+
+%
+% -----------------------------------------------------------------------------------------------------------------------------------------------------
+%
+
+\vspace{5mm}
+\noindent
+\fbox{
+  \begin{minipage}{0.97 \textwidth}
+    \begin{center}
+      \vspace{1mm}
+        \Large{Expérimentation numérique de ReactiveGRASP}
+      \vspace{1mm}
+    \end{center}
+  \end{minipage}
+}
+\vspace{2mm}
+
+\noindent
+Présenter le protocole d'expérimentation (env. matériel; budget de calcul; condition(s) d'arrêt).
+
+\noindent
+Rapporter graphiquement vos résultats selon $\hat{z}_{min}$, $\hat{z}_{max}$, $\hat{z}_{moy}$ mesurés à intervalles réguliers (exemple de pas de 10 secondes).
+
+\noindent
+Rapporter l'apprentissage du paramètre $\alpha$ réalisé par ReactiveGRASP, les valeurs saillantes établies.
+
+\noindent
+Présenter sous forme de tableau les résultats finaux obtenus pour les 10 instances sélectionnées.
+
+%
+% -----------------------------------------------------------------------------------------------------------------------------------------------------
+%
+
+\vspace{5mm}
+\noindent
+\fbox{
+  \begin{minipage}{0.97 \textwidth}
+    \begin{center}
+      \vspace{1mm}
+        \Large{Eléments de contribution au bonus}
+      \vspace{1mm}
+    \end{center}
+  \end{minipage}
+}
+\vspace{2mm}
+
+\noindent
+Présenter vos contributions aux aspects proposés en bonus.
+
+%
+% -----------------------------------------------------------------------------------------------------------------------------------------------------
+%
+
+\vspace{5mm}
+\noindent
+\fbox{
+  \begin{minipage}{0.97 \textwidth}
+    \begin{center}
+      \vspace{1mm}
+        \Large{Discussion}
+      \vspace{1mm}
+    \end{center}
+  \end{minipage}
+}
+\vspace{2mm}
+
+\noindent
+Tirer des conclusions en comparant les résultats collectés avec vos deux variantes de métaheuristiques.
+\noindent
+Quelles sont les recommandations que vous émettez à l'issue de l'étude et avec quelle variante continuez vous l'aventure des métaheuristiques?
+
+\vfill
+\break

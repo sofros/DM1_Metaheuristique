@@ -75,7 +75,7 @@ function exchange1_1(solution,n,m,couts,crts,matrix)
         end
     end
     #x,objectif= Solution.x
-    println(x_best.objectif, "\n")
+#    println(x_best.objectif, "\n")
     return(x_best.x,x_best.objectif)
 end
 
@@ -117,7 +117,7 @@ function exchange1_2(solution,n,m,couts,crts,matrix)
         end
     end
     #x,objectif= Solution.x
-    println(x_best.objectif, "\n")
+    #println(x_best.objectif, "\n")
     return(x_best.x,x_best.objectif)
 end
 

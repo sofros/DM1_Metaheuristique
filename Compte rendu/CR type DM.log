@@ -1,0 +1,270 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000 64-bit) (preloaded format=latex 2019.5.10)  8 OCT 2019 05:34
+entering extended mode
+**"./CR type DM.tex"
+("CR type DM.tex"
+LaTeX2e <2018-12-01>
+("B:\Program Files (x86)\Miktex 2.9\tex/latex/base\article.cls"
+Document Class: article 2018/09/03 v1.4i Standard LaTeX document class
+("B:\Program Files (x86)\Miktex 2.9\tex/latex/base\size10.clo"
+File: size10.clo 2018/09/03 v1.4i Standard LaTeX file (size option)
+)
+\c@part=\count80
+\c@section=\count81
+\c@subsection=\count82
+\c@subsubsection=\count83
+\c@paragraph=\count84
+\c@subparagraph=\count85
+\c@figure=\count86
+\c@table=\count87
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+("B:\Program Files (x86)\Miktex 2.9\tex/latex/a4wide\a4wide.sty"
+Package: a4wide 1994/08/30
+
+("B:\Program Files (x86)\Miktex 2.9\tex/latex/ntgclass\a4.sty"
+Package: a4 2004/04/15 v1.2g A4 based page layout
+))
+("B:\Program Files (x86)\Miktex 2.9\tex/generic/babel\babel.sty"
+Package: babel 2019/04/01 3.28 The Babel package
+
+("B:\Program Files (x86)\Miktex 2.9\tex/generic/babel\switch.def"
+File: switch.def 2019/04/01 3.28 Babel switching mechanism
+)
+*************************************
+* Local config file bblopts.cfg used
+*
+("B:\Program Files (x86)\Miktex 2.9\tex/latex/arabi\bblopts.cfg"
+File: bblopts.cfg 2005/09/08 v0.1 add Arabic and Farsi to "declared" options of
+ babel
+)
+("B:\Program Files (x86)\Miktex 2.9\tex/generic/babel-french\francais.ldf"
+Language: francais 2019/03/30 v3.5e French support from the babel system
+
+
+Package francais.ldf Warning: Option `francais' for Babel is *deprecated*,
+(francais.ldf)                it might be removed sooner or later. Please
+(francais.ldf)                use `french' instead; reported on input line 31.
+
+("B:\Program Files (x86)\Miktex 2.9\tex/generic/babel-french\french.ldf"
+Language: french 2019/03/30 v3.5e French support from the babel system
+
+("B:\Program Files (x86)\Miktex 2.9\tex/generic/babel\babel.def"
+File: babel.def 2019/04/01 3.28 Babel common definitions
+\babel@savecnt=\count88
+\U@D=\dimen103
+
+("B:\Program Files (x86)\Miktex 2.9\tex/generic/babel\txtbabel.def")
+\bbl@dirlevel=\count89
+)
+\l@acadian = a dialect from \language\l@french 
+\FB@nonchar=\count90
+Package babel Info: Making : an active character on input line 414.
+Package babel Info: Making ; an active character on input line 415.
+Package babel Info: Making ! an active character on input line 416.
+Package babel Info: Making ? an active character on input line 417.
+\FBguill@level=\count91
+\FBold@everypar=\toks14
+\FB@Mht=\dimen104
+\mc@charclass=\count92
+\mc@charfam=\count93
+\mc@charslot=\count94
+\std@mcc=\count95
+\dec@mcc=\count96
+\c@FBcaption@count=\count97
+\listindentFB=\dimen105
+\descindentFB=\dimen106
+\labelindentFB=\dimen107
+\labelwidthFB=\dimen108
+\leftmarginFB=\dimen109
+\parindentFFN=\dimen110
+\FBfnindent=\dimen111
+)))
+("B:\Program Files (x86)\Miktex 2.9\tex/latex/carlisle\scalefnt.sty")
+("B:\Program Files (x86)\Miktex 2.9\tex/latex/graphics\keyval.sty"
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks15
+)
+("B:\Program Files (x86)\Miktex 2.9\tex/latex/base\inputenc.sty"
+Package: inputenc 2018/08/11 v1.3c Input encoding file
+\inpenc@prehook=\toks16
+\inpenc@posthook=\toks17
+
+("B:\Program Files (x86)\Miktex 2.9\tex/latex/ucs\utf8x.def"
+File: utf8x.def 2004/10/17 UCS: Input encoding UTF-8
+))
+("B:\Program Files (x86)\Miktex 2.9\tex/latex/ucs\ucs.sty"
+Package: ucs 2013/05/11 v2.2 UCS: Unicode input support
+
+("B:\Program Files (x86)\Miktex 2.9\tex/latex/ucs\uni-global.def"
+File: uni-global.def 2013/05/13 UCS: Unicode global data
+)
+\uc@secondtry=\count98
+\uc@combtoks=\toks18
+\uc@combtoksb=\toks19
+\uc@temptokena=\toks20
+)
+No file "CR type DM".aux.
+\openout1 = `"CR type DM.aux"'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Info: Redefining \degres on input line 27.
+LaTeX Info: Redefining \dots on input line 27.
+LaTeX Info: Redefining \up on input line 27.
+
+Package french.ldf Warning: OT1 encoding should not be used for French.
+(french.ldf)                Add \usepackage[T1]{fontenc} to the preamble
+(french.ldf)                of your document; reported on input line 27.
+
+("B:\Program Files (x86)\Miktex 2.9\tex/latex/ucs\ucsencs.def"
+File: ucsencs.def 2011/01/21 Fixes to fontencodings LGR, T3
+)
+("B:\Program Files (x86)\Miktex 2.9\tex/latex/ucs\uni-0.def"
+File: uni-0.def 2013/05/13 UCS: Unicode data U+0000..U+00FF
+)
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <17.28> on input line 46.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 46.
+ [1
+
+]
+(DM1/cr_dm1.tex
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 22.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 22.
+
+Overfull \hbox (0.72957pt too wide) in paragraph at lines 13--24
+[]
+ []
+
+
+Overfull \hbox (0.72957pt too wide) in paragraph at lines 33--44
+[]
+ []
+
+
+Overfull \hbox (0.72957pt too wide) in paragraph at lines 53--64
+[]
+ []
+
+
+Overfull \hbox (0.72957pt too wide) in paragraph at lines 73--84
+[]
+ []
+
+
+Overfull \hbox (0.72957pt too wide) in paragraph at lines 93--104
+[]
+ []
+
+
+Overfull \hbox (0.72957pt too wide) in paragraph at lines 113--124
+[]
+ []
+
+
+Overfull \hbox (0.72957pt too wide) in paragraph at lines 134--145
+[]
+ []
+
+[2]) (DM2/cr_dm2.tex
+Overfull \hbox (0.72957pt too wide) in paragraph at lines 13--24
+[]
+ []
+
+
+Overfull \hbox (1.63669pt too wide) in paragraph at lines 25--27
+[]\OT1/cmr/m/n/10 Presenter l'al-go-rithme mis en oeuvre. Illus-trer sur un ex
+emple di-dac-tique (pour-suivre avec l'exemple
+ []
+
+
+Overfull \hbox (0.72957pt too wide) in paragraph at lines 33--44
+[]
+ []
+
+
+Overfull \hbox (1.63669pt too wide) in paragraph at lines 45--47
+[]\OT1/cmr/m/n/10 Presenter l'al-go-rithme mis en oeuvre. Illus-trer sur un ex
+emple di-dac-tique (pour-suivre avec l'exemple
+ []
+
+
+Overfull \hbox (0.72957pt too wide) in paragraph at lines 53--64
+[]
+ []
+
+
+Overfull \hbox (0.72957pt too wide) in paragraph at lines 82--93
+[]
+ []
+
+
+Overfull \hbox (4.2512pt too wide) in paragraph at lines 100--102
+[]\OT1/cmr/m/n/10 Rapporter l'ap-pren-tis-sage du pa-rametre $\OML/cmm/m/it/10
+ $ \OT1/cmr/m/n/10 realise par Reac-ti-ve-GRASP, les va-leurs saillantes et
+ablies. 
+ []
+
+
+Overfull \hbox (0.72957pt too wide) in paragraph at lines 111--122
+[]
+ []
+
+
+Overfull \hbox (0.72957pt too wide) in paragraph at lines 131--142
+[]
+ []
+
+
+Overfull \hbox (9.52547pt too wide) in paragraph at lines 143--147
+[]\OT1/cmr/m/n/10 Tirer des conclu-sions en com-pa-rant les resultats col-lect
+es avec vos deux va-riantes de metaheuristiques.
+ []
+
+[3]) (DM3/cr_dm3.tex
+Overfull \hbox (0.72957pt too wide) in paragraph at lines 13--24
+[]
+ []
+
+
+Overfull \hbox (1.63669pt too wide) in paragraph at lines 25--27
+[]\OT1/cmr/m/n/10 Presenter l'al-go-rithme mis en oeuvre. Illus-trer sur un ex
+emple di-dac-tique (pour-suivre avec l'exemple
+ []
+
+
+Overfull \hbox (0.72957pt too wide) in paragraph at lines 34--45
+[]
+ []
+
+
+Overfull \hbox (0.72957pt too wide) in paragraph at lines 63--74
+[]
+ []
+
+) [4] ("CR type DM.aux") ) 
+Here is how much of TeX's memory you used:
+ 2340 strings out of 492946
+ 33280 string characters out of 3132896
+ 114723 words of memory out of 3000000
+ 6247 multiletter control sequences out of 15000+200000
+ 6979 words of font info for 25 fonts, out of 3000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 30i,5n,31p,314b,575s stack positions out of 5000i,500n,10000p,200000b,50000s
+
+Output written on "CR type DM.dvi" (4 pages, 13668 bytes).
