@@ -1,0 +1,453 @@
+Experimenation numérique:
+    ressources: 30 secondes
+    tirage avant recalcul: 100
+    nombres d'experimetation: 8
+
+
+
+
+              _
+   _       _ _(_)_     |  Documentation: https://docs.julialang.org
+  (_)     | (_) (_)    |
+   _ _   _| |_  __ _   |  Type "?" for help, "]?" for Pkg help.
+  | | | | | | |/ _` |  |
+  | | |_| | | | (_| |  |  Version 1.0.0 (2018-08-08)
+ _/ |\__'_|_|_|\__'_|  |  Official https://julialang.org/ release
+|__/                   |
+
+julia> include("main.jl")
+pwd = /comptes/E197494S/DM/Metaheuristique/DM1_Metaheuristique-master/solveSPP-master/Data
+fname = pb_100rnd0400.dat
+fname = pb_100rnd0800.dat
+fname = pb_100rnd1000.dat
+fname = pb_200rnd0300.dat
+fname = pb_200rnd0400.dat
+fname = pb_200rnd0800.dat
+fname = pb_200rnd0900.dat
+fname = pb_200rnd1100.dat
+fname = pb_200rnd1200.dat
+fname = pb_200rnd1800.dat
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      Experimentation: 1
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+====================================================================
+pb_100rnd0400.dat
+Solution Glouton deterministe: 13
+zBest: 16   zAvg:  12.256651505440697    zWorst: 6 nombre de recalcul de p: 338
+ 30.378281 seconds (4.76 M allocations: 966.026 MiB, 0.12% gc time)
+====================================================================
+pb_100rnd0800.dat
+Solution Glouton deterministe: 32
+zBest: 34   zAvg:  29.657184565759025    zWorst: 20 nombre de recalcul de p: 393
+ 30.042661 seconds (34.27 M allocations: 5.911 GiB, 0.59% gc time)
+====================================================================
+pb_100rnd1000.dat
+Solution Glouton deterministe: 36
+zBest: 39   zAvg:  35.66142146881793    zWorst: 26 nombre de recalcul de p: 171
+ 30.049099 seconds (5.46 M allocations: 1.171 GiB, 0.13% gc time)
+====================================================================
+pb_200rnd0300.dat
+Solution Glouton deterministe: 682
+zBest: 704   zAvg:  627.067811522588    zWorst: 452 nombre de recalcul de p: 23
+ 31.202348 seconds (1.18 M allocations: 374.275 MiB, 0.06% gc time)
+====================================================================
+pb_200rnd0400.dat
+Solution Glouton deterministe: 55
+zBest: 60   zAvg:  53.75379406805679    zWorst: 41 nombre de recalcul de p: 21
+ 31.206745 seconds (1.08 M allocations: 377.488 MiB, 0.05% gc time)
+====================================================================
+pb_200rnd0800.dat
+Solution Glouton deterministe: 64
+zBest: 70   zAvg:  63.04476950789998    zWorst: 46 nombre de recalcul de p: 60
+ 30.463734 seconds (20.71 M allocations: 4.430 GiB, 0.79% gc time)
+====================================================================
+pb_200rnd0900.dat
+Solution Glouton deterministe: 1073
+zBest: 1189   zAvg:  1120.8055751270026    zWorst: 896 nombre de recalcul de p: 45
+ 30.575622 seconds (26.43 M allocations: 4.653 GiB, 0.88% gc time)
+====================================================================
+pb_200rnd1100.dat
+Solution Glouton deterministe: 531
+zBest: 543   zAvg:  487.6343158916451    zWorst: 313 nombre de recalcul de p: 135
+ 30.204654 seconds (4.15 M allocations: 1.384 GiB, 0.23% gc time)
+====================================================================
+pb_200rnd1200.dat
+Solution Glouton deterministe: 40
+zBest: 41   zAvg:  36.11544394542297    zWorst: 22 nombre de recalcul de p: 113
+ 30.230668 seconds (7.13 M allocations: 1.894 GiB, 0.26% gc time)
+====================================================================
+pb_200rnd1800.dat
+Solution Glouton deterministe: 15
+zBest: 18   zAvg:  13.828752732262686    zWorst: 8 nombre de recalcul de p: 131
+ 30.098984 seconds (1.73 M allocations: 636.842 MiB, 0.10% gc time)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      Experimentation: 2
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+====================================================================
+pb_100rnd0400.dat
+Solution Glouton deterministe: 13
+zBest: 16   zAvg:  12.252027620838138    zWorst: 6 nombre de recalcul de p: 338
+ 30.065265 seconds (3.92 M allocations: 924.992 MiB, 0.09% gc time)
+====================================================================
+pb_100rnd0800.dat
+Solution Glouton deterministe: 32
+zBest: 34   zAvg:  29.76777804398692    zWorst: 19 nombre de recalcul de p: 394
+ 30.024625 seconds (34.36 M allocations: 5.911 GiB, 0.60% gc time)
+====================================================================
+pb_100rnd1000.dat
+Solution Glouton deterministe: 36
+zBest: 39   zAvg:  35.64728392806968    zWorst: 26 nombre de recalcul de p: 174
+ 30.157642 seconds (5.55 M allocations: 1.192 GiB, 0.13% gc time)
+====================================================================
+pb_200rnd0300.dat
+Solution Glouton deterministe: 682
+zBest: 700   zAvg:  625.1138692124068    zWorst: 457 nombre de recalcul de p: 23
+ 30.847928 seconds (1.18 M allocations: 373.821 MiB, 0.18% gc time)
+====================================================================
+pb_200rnd0400.dat
+Solution Glouton deterministe: 55
+zBest: 61   zAvg:  53.61448160675506    zWorst: 40 nombre de recalcul de p: 22
+ 31.386504 seconds (1.13 M allocations: 395.302 MiB, 0.03% gc time)
+====================================================================
+pb_200rnd0800.dat
+Solution Glouton deterministe: 64
+zBest: 70   zAvg:  63.044738192907936    zWorst: 47 nombre de recalcul de p: 61
+ 30.313905 seconds (21.07 M allocations: 4.506 GiB, 0.31% gc time)
+====================================================================
+pb_200rnd0900.dat
+Solution Glouton deterministe: 1073
+zBest: 1189   zAvg:  1121.718327996671    zWorst: 919 nombre de recalcul de p: 46
+ 30.518878 seconds (27.02 M allocations: 4.760 GiB, 0.35% gc time)
+====================================================================
+pb_200rnd1100.dat
+Solution Glouton deterministe: 531
+zBest: 545   zAvg:  487.53835686909207    zWorst: 296 nombre de recalcul de p: 135
+ 30.099066 seconds (4.14 M allocations: 1.380 GiB, 0.10% gc time)
+====================================================================
+pb_200rnd1200.dat
+Solution Glouton deterministe: 40
+zBest: 41   zAvg:  35.97687941774247    zWorst: 22 nombre de recalcul de p: 113
+ 30.119263 seconds (7.12 M allocations: 1.891 GiB, 0.14% gc time)
+====================================================================
+pb_200rnd1800.dat
+Solution Glouton deterministe: 15
+zBest: 18   zAvg:  13.836636610112432    zWorst: 8 nombre de recalcul de p: 131
+ 30.030129 seconds (1.73 M allocations: 637.838 MiB, 0.05% gc time)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      Experimentation: 3
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+====================================================================
+pb_100rnd0400.dat
+Solution Glouton deterministe: 13
+zBest: 16   zAvg:  12.271562702025928    zWorst: 6 nombre de recalcul de p: 346
+ 30.075223 seconds (4.02 M allocations: 947.267 MiB, 0.14% gc time)
+====================================================================
+pb_100rnd0800.dat
+Solution Glouton deterministe: 32
+zBest: 34   zAvg:  29.72217146494417    zWorst: 19 nombre de recalcul de p: 392
+ 30.042356 seconds (34.18 M allocations: 5.885 GiB, 0.86% gc time)
+====================================================================
+pb_100rnd1000.dat
+Solution Glouton deterministe: 36
+zBest: 39   zAvg:  35.689194959420405    zWorst: 26 nombre de recalcul de p: 173
+ 30.048836 seconds (5.52 M allocations: 1.184 GiB, 0.18% gc time)
+====================================================================
+pb_200rnd0300.dat
+Solution Glouton deterministe: 682
+zBest: 703   zAvg:  625.7022971390028    zWorst: 451 nombre de recalcul de p: 23
+ 30.690581 seconds (1.18 M allocations: 375.135 MiB, 0.03% gc time)
+====================================================================
+pb_200rnd0400.dat
+Solution Glouton deterministe: 55
+zBest: 60   zAvg:  53.71144673115666    zWorst: 41 nombre de recalcul de p: 21
+ 30.664246 seconds (1.08 M allocations: 377.256 MiB, 0.03% gc time)
+====================================================================
+pb_200rnd0800.dat
+Solution Glouton deterministe: 64
+zBest: 70   zAvg:  63.08628944086204    zWorst: 47 nombre de recalcul de p: 62
+ 30.459924 seconds (21.40 M allocations: 4.576 GiB, 0.32% gc time)
+====================================================================
+pb_200rnd0900.dat
+Solution Glouton deterministe: 1073
+zBest: 1184   zAvg:  1122.004585064656    zWorst: 900 nombre de recalcul de p: 46
+ 30.016452 seconds (27.04 M allocations: 4.758 GiB, 0.35% gc time)
+====================================================================
+pb_200rnd1100.dat
+Solution Glouton deterministe: 531
+zBest: 544   zAvg:  487.680367921585    zWorst: 312 nombre de recalcul de p: 137
+ 30.104011 seconds (4.21 M allocations: 1.403 GiB, 0.11% gc time)
+====================================================================
+pb_200rnd1200.dat
+Solution Glouton deterministe: 40
+zBest: 41   zAvg:  36.120237311481574    zWorst: 22 nombre de recalcul de p: 114
+ 30.226504 seconds (7.19 M allocations: 1.910 GiB, 0.14% gc time)
+====================================================================
+pb_200rnd1800.dat
+Solution Glouton deterministe: 15
+zBest: 18   zAvg:  13.827104624631332    zWorst: 8 nombre de recalcul de p: 131
+ 30.071118 seconds (1.72 M allocations: 636.868 MiB, 0.05% gc time)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      Experimentation: 4
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+====================================================================
+pb_100rnd0400.dat
+Solution Glouton deterministe: 13
+zBest: 16   zAvg:  12.258856234377024    zWorst: 6 nombre de recalcul de p: 337
+ 30.067180 seconds (3.91 M allocations: 921.412 MiB, 0.12% gc time)
+====================================================================
+pb_100rnd0800.dat
+Solution Glouton deterministe: 32
+zBest: 34   zAvg:  29.745837537396625    zWorst: 19 nombre de recalcul de p: 390
+ 30.044926 seconds (34.03 M allocations: 5.854 GiB, 0.86% gc time)
+====================================================================
+pb_100rnd1000.dat
+Solution Glouton deterministe: 36
+zBest: 40   zAvg:  35.6634777644448    zWorst: 27 nombre de recalcul de p: 173
+ 30.063777 seconds (5.52 M allocations: 1.185 GiB, 0.17% gc time)
+====================================================================
+pb_200rnd0300.dat
+Solution Glouton deterministe: 682
+zBest: 701   zAvg:  628.1537236410278    zWorst: 421 nombre de recalcul de p: 23
+ 30.709547 seconds (1.18 M allocations: 374.180 MiB, 0.03% gc time)
+====================================================================
+pb_200rnd0400.dat
+Solution Glouton deterministe: 55
+zBest: 60   zAvg:  53.688732396410536    zWorst: 42 nombre de recalcul de p: 21
+ 30.826637 seconds (1.08 M allocations: 376.157 MiB, 0.03% gc time)
+====================================================================
+pb_200rnd0800.dat
+Solution Glouton deterministe: 64
+zBest: 70   zAvg:  62.96066505117301    zWorst: 47 nombre de recalcul de p: 62
+ 30.442860 seconds (21.34 M allocations: 4.567 GiB, 0.32% gc time)
+====================================================================
+pb_200rnd0900.dat
+Solution Glouton deterministe: 1073
+zBest: 1183   zAvg:  1122.1049395252758    zWorst: 898 nombre de recalcul de p: 47
+ 30.561129 seconds (27.62 M allocations: 4.863 GiB, 0.36% gc time)
+====================================================================
+pb_200rnd1100.dat
+Solution Glouton deterministe: 531
+zBest: 544   zAvg:  487.62060332761746    zWorst: 312 nombre de recalcul de p: 137
+ 30.066651 seconds (4.22 M allocations: 1.406 GiB, 0.11% gc time)
+====================================================================
+pb_200rnd1200.dat
+Solution Glouton deterministe: 40
+zBest: 41   zAvg:  36.050225971491116    zWorst: 22 nombre de recalcul de p: 114
+ 30.177783 seconds (7.19 M allocations: 1.909 GiB, 0.15% gc time)
+====================================================================
+pb_200rnd1800.dat
+Solution Glouton deterministe: 15
+zBest: 18   zAvg:  13.793751851267078    zWorst: 8 nombre de recalcul de p: 131
+ 30.128015 seconds (1.72 M allocations: 636.576 MiB, 0.05% gc time)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      Experimentation: 5
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+====================================================================
+pb_100rnd0400.dat
+Solution Glouton deterministe: 13
+zBest: 16   zAvg:  12.244048560659746    zWorst: 7 nombre de recalcul de p: 334
+ 30.031067 seconds (3.87 M allocations: 914.018 MiB, 0.12% gc time)
+====================================================================
+pb_100rnd0800.dat
+Solution Glouton deterministe: 32
+zBest: 34   zAvg:  29.673860311318073    zWorst: 18 nombre de recalcul de p: 391
+ 30.072636 seconds (34.09 M allocations: 5.877 GiB, 0.88% gc time)
+====================================================================
+pb_100rnd1000.dat
+Solution Glouton deterministe: 36
+zBest: 39   zAvg:  35.64027643818602    zWorst: 27 nombre de recalcul de p: 170
+ 30.025231 seconds (5.43 M allocations: 1.165 GiB, 0.18% gc time)
+====================================================================
+pb_200rnd0300.dat
+Solution Glouton deterministe: 682
+zBest: 708   zAvg:  626.3084846152381    zWorst: 453 nombre de recalcul de p: 23
+ 30.714020 seconds (1.18 M allocations: 374.061 MiB, 0.03% gc time)
+====================================================================
+pb_200rnd0400.dat
+Solution Glouton deterministe: 55
+zBest: 60   zAvg:  53.58197657657199    zWorst: 38 nombre de recalcul de p: 21
+ 30.718269 seconds (1.08 M allocations: 376.353 MiB, 0.03% gc time)
+====================================================================
+pb_200rnd0800.dat
+Solution Glouton deterministe: 64
+zBest: 70   zAvg:  62.99875105867469    zWorst: 47 nombre de recalcul de p: 62
+ 30.460502 seconds (21.36 M allocations: 4.570 GiB, 0.34% gc time)
+====================================================================
+pb_200rnd0900.dat
+Solution Glouton deterministe: 1073
+zBest: 1181   zAvg:  1122.3194649169577    zWorst: 853 nombre de recalcul de p: 46
+ 30.030244 seconds (27.01 M allocations: 4.754 GiB, 0.37% gc time)
+====================================================================
+pb_200rnd1100.dat
+Solution Glouton deterministe: 531
+zBest: 544   zAvg:  487.710915115797    zWorst: 315 nombre de recalcul de p: 137
+ 30.162053 seconds (4.21 M allocations: 1.405 GiB, 0.11% gc time)
+====================================================================
+pb_200rnd1200.dat
+Solution Glouton deterministe: 40
+zBest: 41   zAvg:  36.13321739938634    zWorst: 21 nombre de recalcul de p: 114
+ 30.195992 seconds (7.18 M allocations: 1.910 GiB, 0.15% gc time)
+====================================================================
+pb_200rnd1800.dat
+Solution Glouton deterministe: 15
+zBest: 18   zAvg:  13.802768715764676    zWorst: 8 nombre de recalcul de p: 131
+ 30.109719 seconds (1.73 M allocations: 637.012 MiB, 0.05% gc time)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      Experimentation: 6
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+====================================================================
+pb_100rnd0400.dat
+Solution Glouton deterministe: 13
+zBest: 16   zAvg:  12.274350876451178    zWorst: 6 nombre de recalcul de p: 337
+ 30.083927 seconds (3.91 M allocations: 922.460 MiB, 0.12% gc time)
+====================================================================
+pb_100rnd0800.dat
+Solution Glouton deterministe: 32
+zBest: 34   zAvg:  29.67918743938848    zWorst: 19 nombre de recalcul de p: 387
+ 30.038377 seconds (33.75 M allocations: 5.813 GiB, 0.90% gc time)
+====================================================================
+pb_100rnd1000.dat
+Solution Glouton deterministe: 36
+zBest: 40   zAvg:  35.634110851288    zWorst: 27 nombre de recalcul de p: 173
+ 30.048980 seconds (5.52 M allocations: 1.186 GiB, 0.17% gc time)
+====================================================================
+pb_200rnd0300.dat
+Solution Glouton deterministe: 682
+zBest: 702   zAvg:  625.4630039707644    zWorst: 441 nombre de recalcul de p: 23
+ 30.791022 seconds (1.18 M allocations: 373.800 MiB, 0.18% gc time)
+====================================================================
+pb_200rnd0400.dat
+Solution Glouton deterministe: 55
+zBest: 60   zAvg:  53.68612616787315    zWorst: 41 nombre de recalcul de p: 21
+ 31.220209 seconds (1.08 M allocations: 378.068 MiB, 0.03% gc time)
+====================================================================
+pb_200rnd0800.dat
+Solution Glouton deterministe: 64
+zBest: 70   zAvg:  62.95702684711019    zWorst: 44 nombre de recalcul de p: 60
+ 30.058151 seconds (20.70 M allocations: 4.427 GiB, 0.31% gc time)
+====================================================================
+pb_200rnd0900.dat
+Solution Glouton deterministe: 1073
+zBest: 1182   zAvg:  1121.8573439026864    zWorst: 860 nombre de recalcul de p: 46
+ 30.329557 seconds (27.04 M allocations: 4.761 GiB, 0.35% gc time)
+====================================================================
+pb_200rnd1100.dat
+Solution Glouton deterministe: 531
+zBest: 543   zAvg:  487.4536184243607    zWorst: 302 nombre de recalcul de p: 135
+ 30.052633 seconds (4.14 M allocations: 1.382 GiB, 0.10% gc time)
+====================================================================
+pb_200rnd1200.dat
+Solution Glouton deterministe: 40
+zBest: 41   zAvg:  36.073196614583    zWorst: 22 nombre de recalcul de p: 113
+ 30.227180 seconds (7.12 M allocations: 1.892 GiB, 0.14% gc time)
+====================================================================
+pb_200rnd1800.dat
+Solution Glouton deterministe: 15
+zBest: 18   zAvg:  13.816273256485138    zWorst: 8 nombre de recalcul de p: 130
+ 30.058209 seconds (1.71 M allocations: 632.048 MiB, 0.05% gc time)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      Experimentation: 7
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+====================================================================
+pb_100rnd0400.dat
+Solution Glouton deterministe: 13
+zBest: 16   zAvg:  12.242216530450849    zWorst: 7 nombre de recalcul de p: 334
+ 30.070786 seconds (3.87 M allocations: 914.187 MiB, 0.10% gc time)
+====================================================================
+pb_100rnd0800.dat
+Solution Glouton deterministe: 32
+zBest: 34   zAvg:  29.666229372092413    zWorst: 19 nombre de recalcul de p: 388
+ 30.039391 seconds (33.82 M allocations: 5.831 GiB, 0.84% gc time)
+====================================================================
+pb_100rnd1000.dat
+Solution Glouton deterministe: 36
+zBest: 39   zAvg:  35.625462904061564    zWorst: 28 nombre de recalcul de p: 172
+ 30.093430 seconds (5.48 M allocations: 1.177 GiB, 0.14% gc time)
+====================================================================
+pb_200rnd0300.dat
+Solution Glouton deterministe: 682
+zBest: 708   zAvg:  625.7504962229802    zWorst: 462 nombre de recalcul de p: 23
+ 31.040982 seconds (1.18 M allocations: 375.069 MiB, 0.03% gc time)
+====================================================================
+pb_200rnd0400.dat
+Solution Glouton deterministe: 55
+zBest: 60   zAvg:  53.74541131877997    zWorst: 41 nombre de recalcul de p: 21
+ 30.425404 seconds (1.08 M allocations: 376.121 MiB, 0.03% gc time)
+====================================================================
+pb_200rnd0800.dat
+Solution Glouton deterministe: 64
+zBest: 70   zAvg:  63.04769376723592    zWorst: 47 nombre de recalcul de p: 61
+ 30.357692 seconds (21.08 M allocations: 4.507 GiB, 0.34% gc time)
+====================================================================
+pb_200rnd0900.dat
+Solution Glouton deterministe: 1073
+zBest: 1179   zAvg:  1121.2792263290437    zWorst: 887 nombre de recalcul de p: 46
+ 30.316292 seconds (27.03 M allocations: 4.758 GiB, 0.38% gc time)
+====================================================================
+pb_200rnd1100.dat
+Solution Glouton deterministe: 531
+zBest: 544   zAvg:  487.88682048969866    zWorst: 304 nombre de recalcul de p: 136
+ 30.120283 seconds (4.18 M allocations: 1.395 GiB, 0.12% gc time)
+====================================================================
+pb_200rnd1200.dat
+Solution Glouton deterministe: 40
+zBest: 41   zAvg:  36.11430769986299    zWorst: 22 nombre de recalcul de p: 112
+ 30.035084 seconds (7.07 M allocations: 1.878 GiB, 0.15% gc time)
+====================================================================
+pb_200rnd1800.dat
+Solution Glouton deterministe: 15
+zBest: 18   zAvg:  13.833593742500437    zWorst: 8 nombre de recalcul de p: 131
+ 30.193422 seconds (1.73 M allocations: 636.947 MiB, 0.05% gc time)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      Experimentation: 8
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+====================================================================
+pb_100rnd0400.dat
+Solution Glouton deterministe: 13
+zBest: 16   zAvg:  12.251927105430692    zWorst: 7 nombre de recalcul de p: 334
+ 30.006082 seconds (3.87 M allocations: 914.669 MiB, 0.09% gc time)
+====================================================================
+pb_100rnd0800.dat
+Solution Glouton deterministe: 32
+zBest: 34   zAvg:  29.729017579970208    zWorst: 19 nombre de recalcul de p: 387
+ 30.049481 seconds (33.76 M allocations: 5.809 GiB, 0.85% gc time)
+====================================================================
+pb_100rnd1000.dat
+Solution Glouton deterministe: 36
+zBest: 40   zAvg:  35.620280109112436    zWorst: 28 nombre de recalcul de p: 172
+ 30.152247 seconds (5.48 M allocations: 1.177 GiB, 0.14% gc time)
+====================================================================
+pb_200rnd0300.dat
+Solution Glouton deterministe: 682
+zBest: 708   zAvg:  628.1095484844175    zWorst: 446 nombre de recalcul de p: 23
+ 30.937266 seconds (1.18 M allocations: 375.051 MiB, 0.03% gc time)
+====================================================================
+pb_200rnd0400.dat
+Solution Glouton deterministe: 55
+zBest: 61   zAvg:  53.76968414138086    zWorst: 41 nombre de recalcul de p: 21
+ 30.968866 seconds (1.08 M allocations: 377.386 MiB, 0.03% gc time)
+====================================================================
+pb_200rnd0800.dat
+Solution Glouton deterministe: 64
+zBest: 70   zAvg:  63.045150943211944    zWorst: 48 nombre de recalcul de p: 61
+ 30.310294 seconds (21.06 M allocations: 4.504 GiB, 0.35% gc time)
+====================================================================
+pb_200rnd0900.dat
+Solution Glouton deterministe: 1073
+zBest: 1186   zAvg:  1122.1156397306147    zWorst: 851 nombre de recalcul de p: 46
+ 30.192953 seconds (27.03 M allocations: 4.759 GiB, 0.37% gc time)
+====================================================================
+pb_200rnd1100.dat
+Solution Glouton deterministe: 531
+zBest: 544   zAvg:  487.44077231113744    zWorst: 306 nombre de recalcul de p: 137
+ 30.047156 seconds (4.20 M allocations: 1.401 GiB, 0.11% gc time)
+====================================================================
+pb_200rnd1200.dat
+Solution Glouton deterministe: 40
+zBest: 41   zAvg:  36.00715881602214    zWorst: 23 nombre de recalcul de p: 113
+ 30.032695 seconds (7.12 M allocations: 1.892 GiB, 0.15% gc time)
+====================================================================
+pb_200rnd1800.dat
+Solution Glouton deterministe: 15
+zBest: 19   zAvg:  13.834106739702097    zWorst: 7 nombre de recalcul de p: 132
+ 30.213030 seconds (1.74 M allocations: 642.112 MiB, 0.05% gc time)

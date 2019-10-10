@@ -64,7 +64,7 @@ function Glouton(cost, matrix, n, m)
     #println(calculz(SOL,cost,n))
     #return(SOL)
     Z = calculz(SOL,cost,n)
-    println("Solution avant améliration: " , Z)
+    println("Solution Glouton deterministe: " , Z)
 #    return(SOL, desactive_condition, Z)
     return(SOL, Z)
 

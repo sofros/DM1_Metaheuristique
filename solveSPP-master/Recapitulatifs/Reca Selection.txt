@@ -1,0 +1,71 @@
+Paramètres:
+alpha = [0,2 0,4 0,6 0,8 1,0]
+Itération avant recalcul des proba: 15
+Ressource en temps: 2 sec
+Voisinage: 1-1exchange
+
+itérations:
+
+include("main.jl")
+pwd = /comptes/E197494S/DM/Metaheuristique/DM1_Metaheuristique-master/solveSPP-master/Data
+fname = pb_100rnd0400.dat
+fname = pb_100rnd0800.dat
+fname = pb_100rnd1000.dat
+fname = pb_200rnd0300.dat
+fname = pb_200rnd0400.dat
+fname = pb_200rnd0800.dat
+fname = pb_200rnd0900.dat
+fname = pb_200rnd1100.dat
+fname = pb_200rnd1200.dat
+fname = pb_200rnd1800.dat
+====================================================================
+pb_100rnd0400.dat
+Solution Glouton deterministe: 13
+zBest: 16   zAvg:  12.220010896886269    zWorst: 7
+  2.285666 seconds (712.97 k allocations: 82.166 MiB, 0.41% gc time)
+====================================================================
+pb_100rnd0800.dat
+Solution Glouton deterministe: 32
+zBest: 33   zAvg:  29.768750398616817    zWorst: 21
+  2.010571 seconds (2.16 M allocations: 389.998 MiB, 0.90% gc time)
+====================================================================
+pb_100rnd1000.dat
+Solution Glouton deterministe: 36
+zBest: 39   zAvg:  35.56538071843546    zWorst: 29
+  2.011202 seconds (334.89 k allocations: 76.194 MiB, 0.16% gc time)
+====================================================================
+pb_200rnd0300.dat
+Solution Glouton deterministe: 682
+zBest: 698   zAvg:  630.9647661611856    zWorst: 501
+  2.205934 seconds (80.15 k allocations: 27.381 MiB, 0.11% gc time)
+====================================================================
+pb_200rnd0400.dat
+Solution Glouton deterministe: 55
+zBest: 60   zAvg:  53.22007474698476    zWorst: 45
+  2.218915 seconds (72.17 k allocations: 26.459 MiB, 0.05% gc time)
+====================================================================
+pb_200rnd0800.dat
+Solution Glouton deterministe: 64
+zBest: 70   zAvg:  64.19835671374696    zWorst: 50
+  2.080251 seconds (1.30 M allocations: 294.438 MiB, 0.99% gc time)
+====================================================================
+pb_200rnd0900.dat
+Solution Glouton deterministe: 1073
+zBest: 1184   zAvg:  1128.2995997337232    zWorst: 1014
+  2.076381 seconds (1.64 M allocations: 314.364 MiB, 1.06% gc time)
+====================================================================
+pb_200rnd1100.dat
+Solution Glouton deterministe: 531
+zBest: 543   zAvg:  490.565532585656    zWorst: 299
+  2.033917 seconds (279.19 k allocations: 101.472 MiB, 0.34% gc time)
+====================================================================
+pb_200rnd1200.dat
+Solution Glouton deterministe: 40
+zBest: 41   zAvg:  35.80074663596762    zWorst: 24
+  2.043817 seconds (467.08 k allocations: 134.333 MiB, 0.37% gc time)
+====================================================================
+pb_200rnd1800.dat
+Solution Glouton deterministe: 15
+zBest: 18   zAvg:  13.783132054826211    zWorst: 8
+  2.020235 seconds (114.55 k allocations: 44.616 MiB, 0.12% gc time)
+
