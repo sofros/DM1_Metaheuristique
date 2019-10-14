@@ -17,7 +17,12 @@ function ReactiveGRASP(
     #initialisation
     (p,nb_iteration,z_cumul,zBest,zWorst) = intialiser(matrix,cost, n, m, ite, coupe, alphaset)
     liste_alpha = deepcopy(p)
-    evol_p=Float64[]
+    evol_p = Float64[]
+
+    liste_zmax = Int64[]
+    liste_zavg = Float64[]
+    liste_zmin = Int64[]
+
     t=time()
     z_global = zeros(Int64, length(p))
     ite_global = zeros(Int64, length(p))
@@ -30,7 +35,7 @@ function ReactiveGRASP(
         #On s'assure que chaque alpha s'exprime au moins une fois.
         for i in 1:length(p)
             (SOL,z, crts) = GRASP(cost, matrix, n, m, liste_alpha[i])
-            (SOL, z) = exchange1_2(SOL,n,m,cost,crts,matrix)
+            (SOL, z) = exchange1_1(SOL,n,m,cost,crts,matrix)
             z_cumul[i] += z
             if z < zWorst
                 zWorst = z
@@ -45,7 +50,7 @@ function ReactiveGRASP(
             #On lance GRASP avec cet alpha
             (SOL, z, crts) = GRASP(cost, matrix, n, m, liste_alpha[alpha_choisit])
             #Amelioration
-            (SOL, z) = exchange1_2(SOL,n,m,cost,crts,matrix)
+            (SOL, z) = exchange1_1(SOL,n,m,cost,crts,matrix)
             #Réinitialisation
             nb_iteration[alpha_choisit] += 1
             z_cumul[alpha_choisit] += z
@@ -67,11 +72,23 @@ function ReactiveGRASP(
             ite_global[i] = ite_global[i] + nb_iteration[i]
         end
 
+        #Calcul de zAvg
+        moyenne_global=zeros(Float64,length(p))
+        for i in 1:length(p)
+            moyenne_global[i] = z_global[i]/ite_global[i]
+        end
+        zAvg = sum(moyenne_global)/length(p)
+
+        #Push de zMin/Avg/Max dans leurs liste (pour les plots)
+        push!(liste_zmax,zBest)
+        push!(liste_zavg,zAvg)
+        push!(liste_zmin,zWorst)
+
         nb_iteration = ones(Int64, length(p))
         z_cumul = zeros(Int64, length(p))
 
     end #fin while
-    #Calcul de aAvg
+    #Calcul de zAvg
     moyenne_global=zeros(Float64,length(p))
     for i in 1:length(p)
         moyenne_global[i] = z_global[i]/ite_global[i]
@@ -79,6 +96,7 @@ function ReactiveGRASP(
     zAvg = sum(moyenne_global)/length(p)
 
     println("zBest: ", zBest,"   zAvg:  ", zAvg, "    zWorst: ", zWorst , " nombre de recalcul de p: ", nb_boucle)
+#    println("liste_zavg: ", liste_zavg, "\n\n liste_zmax:  ", liste_zmax, "\n\n liste_zmin: ", liste_zmin) #A decomenter si l'on souhaite afficehr les évolutions des solutions
 #    println(evol_p) #A decommenter si l'on souhaite afficher l'évolution des probabilités
     return(evol_p)
 end #fin reactive-GRASP
