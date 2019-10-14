@@ -16,6 +16,7 @@ function ReactiveGRASP(
 
     #initialisation
     (p,nb_iteration,z_cumul,zBest,zWorst) = intialiser(matrix,cost, n, m, ite, coupe, alphaset)
+    liste_alpha = deepcopy(p)
     evol_p=Float64[]
     t=time()
     z_global = zeros(Int64, length(p))
@@ -28,7 +29,8 @@ function ReactiveGRASP(
         nb_boucle += 1
         #On s'assure que chaque alpha s'exprime au moins une fois.
         for i in 1:length(p)
-            (SOL,z, crts) = GRASP(cost, matrix, n, m, p[i])
+            (SOL,z, crts) = GRASP(cost, matrix, n, m, liste_alpha[i])
+            (SOL, z) = exchange1_2(SOL,n,m,cost,crts,matrix)
             z_cumul[i] += z
             if z < zWorst
                 zWorst = z
@@ -41,9 +43,9 @@ function ReactiveGRASP(
             prob = rand(Float64)
             alpha_choisit = choix_alpha(p,prob)
             #On lance GRASP avec cet alpha
-            (SOL, z, crts) = GRASP(cost, matrix, n, m, p[alpha_choisit])
+            (SOL, z, crts) = GRASP(cost, matrix, n, m, liste_alpha[alpha_choisit])
             #Amelioration
-            (SOL, z) = exchange1_1(SOL,n,m,cost,crts,matrix)
+            (SOL, z) = exchange1_2(SOL,n,m,cost,crts,matrix)
             #Réinitialisation
             nb_iteration[alpha_choisit] += 1
             z_cumul[alpha_choisit] += z
@@ -109,18 +111,12 @@ function recalcul_p!(p,z_cumul,zBest,zWorst,nb_iteration,evol_p)
     #initialisation
     q=zeros(Float64,length(p))
     somme_q=0
-#    println("p:  ", p)
-#    println("zcummul:  ", z_cumul)
-#    println("nb_ite;   ", nb_iteration)
-#    println("zBest: ", zBest, "    zWorst: ", zWorst)
 
     for i in 1:length(p)
         moyenne = (z_cumul[i]/nb_iteration[i])
         q[i] = (moyenne-zWorst)/(zBest-zWorst)
-#        println(i, " moyenne: ", moyenne, "   q[i] : " , q[i])
         somme_q += q[i]
     end
-#    println("--------------------")
     for i in 1:length(q)
         p[i] = q[i]/somme_q
     end
