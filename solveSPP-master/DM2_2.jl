@@ -3,6 +3,8 @@ include("DM2_1.jl")
 include("DM1_2.jl")
 
 #======================================================================#
+
+
 function ReactiveGRASP(
     matrix, #matrice de taille m*n representant les condion de notre SPP
     cost, #liste des couts de taille n de notre SPP
@@ -104,10 +106,9 @@ function ReactiveGRASP(
     zAvg = sum(moyenne_global)/length(p)
 
     println("zBest: ", zBest,"   zAvg:  ", zAvg, "    zWorst: ", zWorst , " nombre de recalcul de p: ", nb_boucle)
-#    println("liste_zavg: ", liste_zavg, "\n\n liste_zmax:  ", liste_zmax, "\n\n liste_zmin: ", liste_zmin) #A decomenter si l'on souhaite afficehr les évolutions des solutions
-#    println("z_rouge:  ", z_rouge, "\n z_vert:  ", z_vert, "\n ligne_verte:   ", ligne_verte) #A deomenter si l'o souhaite afficher les z avant et après amélioration, ainsi que zBest
-#   println(evol_p) #A decommenter si l'on souhaite afficher l'évolution des probabilités
-    return(evol_p)
+    println("liste_zavg: ", liste_zavg, "\n\n liste_zmax:  ", liste_zmax, "\n\n liste_zmin: ", liste_zmin) #A decomenter si l'on souhaite afficehr les évolutions des solutions
+#    println(evol_p) #A decommenter si l'on souhaite afficher l'évolution des probabilités
+    return(liste_zavg,liste_zmax,liste_zmin,z_rouge,z_vert,ligne_verte)
 end #fin reactive-GRASP
 
 #=======================================#

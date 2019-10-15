@@ -8,6 +8,7 @@ using LinearAlgebra
 include("loadSPP.jl")
 include("setSPP.jl")
 include("getfname.jl")
+include("experiment.jl")
 #include("DM1_1.jl")
 #include("DM1_2.jl")
 #include("DM2_1.jl")
@@ -33,7 +34,8 @@ include("DM2_2.jl")
 
 # Collecting the names of instances to solve C:Users/Documents/ORO/Metaheuristiques/DM1_Metaheuristique/
 #target = "/comptes/E197494S/DM/Metaheuristique/DM1_Metaheuristique-master/solveSPP-master/Data"            # path for a standard config on Linux
-target = "B:/Cours/Nantes/Metaheuristique/DM1_Metaheuristique/solveSPP-master/Data"                         # path for personal config on windows10
+#target = "B:/Cours/Nantes/Metaheuristique/DM1_Metaheuristique/solveSPP-master/Data"
+target = "C:/Users/Emmanuel/Documents/ORO/Métaheurisques/DM1_Metaheuristique/solveSPP-master/Data"                         # path for personal config on windows10
 cd
 fnames = getfname(target)
 
@@ -42,13 +44,75 @@ for f in fnames
     println("====================================================================")
     println(f)
     cost, matrix, n, m = loadSPP(f)
+    ite = 15
+    alphaset = 0
+    temps = 2
 
     #for i in 1:5
     #    @time (SOL,z) =Glouton(cost, matrix, n, m)
     #    @time (SOL,z) =GRASP(cost, matrix, n, m, 0.9)
     #    @time (SOL,z) =Glouton(cost, matrix, n, m)
-        @time proba = ReactiveGRASP(matrix,cost, n, m, 15, 5, 0, 2)
+    #    @time proba = ReactiveGRASP(matrix,cost, n, m, 15, 5, 0, 2)
+
     #end
+
+    zinit = zeros(Int64, ite) # zero
+    zls   = zeros(Int64, ite) # zero
+    zbest = zeros(Int64, ite) # zero
+
+    # calcule la valeur du pas pour les divisions
+
+    println("Experimentation ReactiveGRASP-SPP avec :")
+    println("  nbIterationGrasp  = ", ite)
+
+    println(" ")
+    cpt = 0
+
+    # run non comptabilise (afin de produire le code compile)
+    #zinit, zls, zbest = graspSPP(allfinstance[1], 0.5, 1)
+
+    print("  ",f," : ")
+    (liste_zavg,liste_zmax,liste_zmin,z_rouge,z_vert,ligne_verte) = ReactiveGRASP(matrix,cost, n, m, ite, 5, alphaset, temps)
+    gr = GRASP(cost,matrix,n,m,0.8)
+    println(" ")
+
+    println("Zavg : ")
+    println(liste_zavg)
+    println("Zmin : ")
+    println(liste_zmin)
+    println("Zmax : ")
+    println(liste_zmax)
+
+        #Pkg.add("PyPlot") # Mandatory before the first use of this package
+    println(" ");println("  Graphiques de synthese")
+
+    #plotRunGrasp(f, liste_zmin, zls, liste_zmax)
+    plotAnalyseGrasp(f, 1:length(liste_zavg), liste_zavg, liste_zmin, liste_zmax )
+    plotRunGrasp(f, z_rouge, z_vert, ligne_verte)
+#    plotAnalyseGrasp(f, x, zmoy[instancenb,:], zmin[instancenb,:], zmax[instancenb,:] )
+#    plotCPUt(allfinstance, tmoy)
+#=
+using Plots
+#@userplot PortfolioComposition
+
+     function f(pc::PortfolioComposition)
+        weights, returns = pc.args
+        weights = cumsum(weights,dims=2)
+        seriestype := :shape
+        for c=1:size(weights,2)
+            sx = vcat(weights[:,c], c==1 ? zeros(length(returns)) : reverse(weights[:,c-1]))
+            sy = vcat(returns, reverse(returns))
+            Shape(sx, sy)
+        end
+    end
+    using Random
+    tickers = ["0.2", "0.4", "0.6", "0.8","1"]
+    N = 10
+    D = length(tickers)
+    weights = rand(N, D)
+    weights ./= sum(weights, dims=2)
+    returns = sort!((1:N) + D * randn(N))
+    portfoliocomposition(weights, returns, labels=permutedims(tickers))=#
 end
 cd("../")
 
