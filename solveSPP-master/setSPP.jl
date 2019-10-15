@@ -10,3 +10,6 @@ function setSPP(solverSelected, C, A)
   @constraint(ip , cte[i=1:m], sum(A[i,j] * x[j] for j=1:n) <= 1)
   return ip, x
 end
+
+
+#ip, ip_x = setSPP(solverSelected, cost, matrix)

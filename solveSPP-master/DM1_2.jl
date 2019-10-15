@@ -94,7 +94,7 @@ function exchange1_2(solution,n,m,couts,crts,matrix)
             x_prime.objectif = calculz(x_prime.x,couts,n)
             # notre boucle p
             for j = 1:n
-                if x_prime.x[j] == 0 && j != i select(crts,matrix,m,j) # j != i car ça sers à rien de remettre une variable enlevée
+                if x_prime.x[j] == 0 && j != i && select(crts,matrix,m,j) # j != i car ça sers à rien de remettre une variable enlevée
                     x_seconde = deepcopy(x_prime)
                     x_seconde.x[j] = 1
                     x_seconde.objectif = calculz(x_seconde.x,couts,n)

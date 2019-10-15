@@ -23,6 +23,10 @@ function ReactiveGRASP(
     liste_zavg = Float64[]
     liste_zmin = Int64[]
 
+    z_rouge = Int64[]
+    z_vert = Int64[]
+    ligne_verte = Int64[]
+
     t=time()
     z_global = zeros(Int64, length(p))
     ite_global = zeros(Int64, length(p))
@@ -49,8 +53,11 @@ function ReactiveGRASP(
             alpha_choisit = choix_alpha(p,prob)
             #On lance GRASP avec cet alpha
             (SOL, z, crts) = GRASP(cost, matrix, n, m, liste_alpha[alpha_choisit])
+            push!(z_rouge, z)
             #Amelioration
+            (SOL, z) = exchange1_2(SOL,n,m,cost,crts,matrix)
             (SOL, z) = exchange1_1(SOL,n,m,cost,crts,matrix)
+            push!(z_vert, z)
             #Réinitialisation
             nb_iteration[alpha_choisit] += 1
             z_cumul[alpha_choisit] += z
@@ -61,6 +68,7 @@ function ReactiveGRASP(
             if z < zWorst
                 zWorst = z
             end #fin if
+            push!(ligne_verte, zBest)
             #Incrément
             cpt = cpt+1
         end #Fin while
@@ -84,8 +92,8 @@ function ReactiveGRASP(
         push!(liste_zavg,zAvg)
         push!(liste_zmin,zWorst)
 
-        nb_iteration = ones(Int64, length(p))
-        z_cumul = zeros(Int64, length(p))
+        #nb_iteration = ones(Int64, length(p))
+        #z_cumul = zeros(Int64, length(p))
 
     end #fin while
     #Calcul de zAvg
@@ -97,7 +105,8 @@ function ReactiveGRASP(
 
     println("zBest: ", zBest,"   zAvg:  ", zAvg, "    zWorst: ", zWorst , " nombre de recalcul de p: ", nb_boucle)
 #    println("liste_zavg: ", liste_zavg, "\n\n liste_zmax:  ", liste_zmax, "\n\n liste_zmin: ", liste_zmin) #A decomenter si l'on souhaite afficehr les évolutions des solutions
-#    println(evol_p) #A decommenter si l'on souhaite afficher l'évolution des probabilités
+#    println("z_rouge:  ", z_rouge, "\n z_vert:  ", z_vert, "\n ligne_verte:   ", ligne_verte) #A deomenter si l'o souhaite afficher les z avant et après amélioration, ainsi que zBest
+#   println(evol_p) #A decommenter si l'on souhaite afficher l'évolution des probabilités
     return(evol_p)
 end #fin reactive-GRASP
 
