@@ -1,6 +1,7 @@
 include("DM1_1.jl")
 include("DM2_1.jl")
 include("DM1_2.jl")
+include("DM2_2.jl")
 include("loadSPP.jl")
 include("setSPP.jl")
 include("getfname.jl")
@@ -10,6 +11,10 @@ fnames = getfname(target)
 
 rep = 10
 alpha = 0.8
+ite = 15
+alphaset = 0
+temps = 2
+nbAlpha = 5
 
 function UpgradeGRASP(cost, matrix, n, m, alpha)
     (SOL, z, desactive_condition) = GRASP(cost, matrix, n, m, alpha)
@@ -60,5 +65,18 @@ function expGlouton(fnames)
 end
 
 
-expGRASP(fnames)
+function expRect(fnames)
+    for f in fnames
+        println("====================================================================")
+        println(f)
+        cost, matrix, n, m = loadSPP(f)
+        @time for i in 1:rep
+            ReactiveGRASP(matrix,cost, n, m, ite, nbAlpha, alphaset, temps)
+        end
+    end
+    cd("../")
+end
+
+expRect(fnames)
+#expGRASP(fnames)
 #expGlouton(fnames)
