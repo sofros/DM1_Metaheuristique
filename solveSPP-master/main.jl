@@ -34,8 +34,8 @@ include("DM2_2.jl")
 
 # Collecting the names of instances to solve C:Users/Documents/ORO/Metaheuristiques/DM1_Metaheuristique/
 #target = "/comptes/E197494S/DM/Metaheuristique/DM1_Metaheuristique-master/solveSPP-master/Data"            # path for a standard config on Linux
-#target = "B:/Cours/Nantes/Metaheuristique/DM1_Metaheuristique/solveSPP-master/Data"
-target = "C:/Users/Emmanuel/Documents/ORO/Métaheurisques/DM1_Metaheuristique/solveSPP-master/Data"                         # path for personal config on windows10
+target = "B:/Cours/Nantes/Metaheuristique/DM1_Metaheuristique/solveSPP-master/Data"
+#target = "C:/Users/Emmanuel/Documents/ORO/Métaheurisques/DM1_Metaheuristique/solveSPP-master/Data"                         # path for personal config on windows10
 cd
 fnames = getfname(target)
 
@@ -47,6 +47,7 @@ for f in fnames
     ite = 15
     alphaset = 0
     temps = 2
+    nbAlpha = 5
 
     #for i in 1:5
     #    @time (SOL,z) =Glouton(cost, matrix, n, m)
@@ -72,7 +73,7 @@ for f in fnames
     #zinit, zls, zbest = graspSPP(allfinstance[1], 0.5, 1)
 
     print("  ",f," : ")
-    (liste_zavg,liste_zmax,liste_zmin,z_rouge,z_vert,ligne_verte) = ReactiveGRASP(matrix,cost, n, m, ite, 5, alphaset, temps)
+    (liste_zavg,liste_zmax,liste_zmin,z_rouge,z_vert,ligne_verte) = ReactiveGRASP(matrix,cost, n, m, ite, nbAlpha, alphaset, temps)
     gr = GRASP(cost,matrix,n,m,0.8)
     println(" ")
 

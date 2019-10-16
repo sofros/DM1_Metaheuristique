@@ -94,8 +94,8 @@ function ReactiveGRASP(
         push!(liste_zavg,zAvg)
         push!(liste_zmin,zWorst)
 
-        #nb_iteration = ones(Int64, length(p))
-        #z_cumul = zeros(Int64, length(p))
+        nb_iteration = ones(Int64, length(p))
+        z_cumul = zeros(Int64, length(p))
 
     end #fin while
     #Calcul de zAvg
@@ -106,7 +106,7 @@ function ReactiveGRASP(
     zAvg = sum(moyenne_global)/length(p)
 
     println("zBest: ", zBest,"   zAvg:  ", zAvg, "    zWorst: ", zWorst , " nombre de recalcul de p: ", nb_boucle)
-    println("liste_zavg: ", liste_zavg, "\n\n liste_zmax:  ", liste_zmax, "\n\n liste_zmin: ", liste_zmin) #A decomenter si l'on souhaite afficehr les évolutions des solutions
+#    println("liste_zavg: ", liste_zavg, "\n\n liste_zmax:  ", liste_zmax, "\n\n liste_zmin: ", liste_zmin) #A decomenter si l'on souhaite afficehr les évolutions des solutions
 #    println(evol_p) #A decommenter si l'on souhaite afficher l'évolution des probabilités
     return(liste_zavg,liste_zmax,liste_zmin,z_rouge,z_vert,ligne_verte)
 end #fin reactive-GRASP
