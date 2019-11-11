@@ -84,7 +84,7 @@ end
     fonction de kp-exchange avec k=1 et p=1
     fonction lourde : à optimiser
 """
-function exchange1_2()
+function exchange1_2(solution,n,m,couts,crts,matrix)
     x_best = Solution(solution,calculz(solution,couts,n))
     # notre boucle k
     for i in 1:n
@@ -158,19 +158,22 @@ function fast1_2opti(solution,n,m,couts,crts,matrix)
     trouvé = false
     i = 0
     x_best = Solution(solution,calculz(solution,couts,n))
-    while i <= n && !trouvé
+    while i < n && !trouvé
+        i+=1
         if  x_best.x[i]  == 1
             x_prime = deepcopy(x_best)
             x_prime.x[i] = 0
             x_prime.objectif -= couts[i]
             j = 0
-            while j <= n && !trouvé
+            while j < n && !trouvé
+                j+=1
                 if x_prime.x[j] == 0 && j != i && select(crts,matrix,m,j)
                     x_seconde = deepcopy(x_prime)
                     x_seconde.x[j] = 1
                     x_seconde.objectif += couts[j]
                     p = 0
-                    while p <= n && !trouvé
+                    while p < n && !trouvé
+                        p+=1
                         if  x_seconde.x[p] == 0 && p != i && select(crts,matrix,m,p)
                             x_tierce = deepcopy(x_seconde)
                             x_tierce.x[p] = 1

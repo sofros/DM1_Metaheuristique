@@ -13,6 +13,7 @@ include("experiment.jl")
 #include("DM1_2.jl")
 #include("DM2_1.jl")
 include("DM2_2.jl")
+include("recuit2.jl")
 #include("brouillon.jl")
 
 # =========================================================================== #
@@ -90,6 +91,11 @@ for f in fnames
     #plotRunGrasp(f, liste_zmin, zls, liste_zmax)
     plotAnalyseGrasp(f, 1:length(liste_zavg), liste_zavg, liste_zmin, liste_zmax )
     plotRunGrasp(f, z_rouge, z_vert, ligne_verte)
+     #On fait une solution de base
+    (Sol,z, crts) = GRASP(cost, matrix, n, m, 0.75)
+    #test Recuit
+    test = SA(Sol,n,m,cost,crts,matrix,exchange1_1)
+    println("solution du SA :", test[2])
 #    plotAnalyseGrasp(f, x, zmoy[instancenb,:], zmin[instancenb,:], zmax[instancenb,:] )
 #    plotCPUt(allfinstance, tmoy)
 #=
