@@ -34,8 +34,8 @@ include("DM2_2.jl")
 
 # Collecting the names of instances to solve C:Users/Documents/ORO/Metaheuristiques/DM1_Metaheuristique/
 #target = "/comptes/E197494S/DM/Metaheuristique/DM1_Metaheuristique-master/solveSPP-master/Data"            # path for a standard config on Linux
-target = "B:/Cours/Nantes/Metaheuristique/DM1_Metaheuristique/solveSPP-master/Data"
-#target = "C:/Users/Emmanuel/Documents/ORO/Métaheurisques/DM1_Metaheuristique/solveSPP-master/Data"                         # path for personal config on windows10
+#target = "B:/Cours/Nantes/Metaheuristique/DM1_Metaheuristique/solveSPP-master/Data"
+target = "C:/Users/Emmanuel/Documents/ORO/Métaheurisques/DM1_Metaheuristique/solveSPP-master/Data"                         # path for personal config on windows10
 cd
 fnames = getfname(target)
 
