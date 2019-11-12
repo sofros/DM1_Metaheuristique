@@ -58,13 +58,13 @@ function exchange1_1(solution,n,m,couts,crts,matrix)
         if  x_best.x[i]  == 1
             x_prime = deepcopy(x_best)
             x_prime.x[i] = 0
-            x_prime.objectif = calculz(x_prime.x,couts,n)
+            x_prime.objectif -= couts[i]
             # notre boucle p
             for j = 1:n
                 if x_prime.x[j] == 0 && j != i && select(crts,matrix,m,j)# j != i car ça sers à rien de remettre une variable enlevée
                     x_seconde = deepcopy(x_prime)
                     x_seconde.x[j] = 1
-                    x_seconde.objectif = calculz(x_seconde.x,couts,n)
+                    x_seconde.objectif = couts[j]
 
                     #on met à jour notre meilleur Solution
                     if x_seconde.objectif > x_best.objectif
@@ -91,18 +91,18 @@ function exchange1_2(solution,n,m,couts,crts,matrix)
         if  x_best.x[i]  == 1
             x_prime = deepcopy(x_best)
             x_prime.x[i] = 0
-            x_prime.objectif = calculz(x_prime.x,couts,n)
+            x_prime.objectif -= couts[i]
             # notre boucle p
             for j = 1:n
                 if x_prime.x[j] == 0 && j != i && select(crts,matrix,m,j) # j != i car ça sers à rien de remettre une variable enlevée
                     x_seconde = deepcopy(x_prime)
                     x_seconde.x[j] = 1
-                    x_seconde.objectif = calculz(x_seconde.x,couts,n)
+                    x_seconde.objectif += couts[j]
                     for p in j:n
                         if  x_seconde.x[p] == 0 && p != i && select(crts,matrix,m,p)
                             x_tierce = deepcopy(x_seconde)
                             x_tierce.x[p] = 1
-                            x_tierce.objectif = calculz(x_tierce.x,couts,n)
+                            x_tierce.objectif += couts[p]
 
                             if x_tierce.objectif > x_best.objectif
                                 x_best = deepcopy(x_tierce)
@@ -122,34 +122,27 @@ function exchange1_2(solution,n,m,couts,crts,matrix)
 end
 
 
-
-#=
-"""
-    fonction de kp-exchange avec k=2 et p=1
-"""
-function exchange2_1(solution,n,m,couts,xbest,crts,matrix)
-    x_best = Solution(solution,calculz(solution.x,couts,n))
-    #premier k
+function fast1_2(solution,n,m,couts,crts,matrix)
+    x_best = Solution(solution,calculz(solution,couts,n))
     for i in 1:n
-        if x_best.x[i]  == 1
+        if  x_best.x[i]  == 1
             x_prime = deepcopy(x_best)
             x_prime.x[i] = 0
-            x_prime.objectif = calculz(x_prime.x,couts,n)
-            #deuxième k
-            for j in 1:n
-                if x_seconde[j] == 1
+            x_prime.objectif -= couts[i]
+            for j = 1:n
+                if x_prime.x[j] == 0 && j != i && select(crts,matrix,m,j)
                     x_seconde = deepcopy(x_prime)
-                    x_seconde.x[j] = 0
-                    x_seconde.objectif = calculz(x_prime.x,couts,n)
-                #notre p
-                    for p in 1:n
-                        if x_tierce[p] && p != i && p != j
+                    x_seconde.x[j] = 1
+                    x_seconde.objectif += couts[j]
+                    for p in j:n
+                        if  x_seconde.x[p] == 0 && p != i && select(crts,matrix,m,p)
                             x_tierce = deepcopy(x_seconde)
-                            x_tierce.x[j] = 1
-                            x_tierce.objectif = calculz(x_tierce.x,couts,n)
-                            #on met a jour notre meilleur Solution
+                            x_tierce.x[p] = 1
+                            x_tierce.objectif += couts[p]
+
                             if x_tierce.objectif > x_best.objectif
                                 x_best = deepcopy(x_tierce)
+                                return(x_best.x,x_best.objectif)
                             end
                         end
                     end
@@ -157,6 +150,44 @@ function exchange2_1(solution,n,m,couts,xbest,crts,matrix)
             end
         end
     end
-    #return(Solution.x,Solution.objectif)
+    return(x_best.x,x_best.objectif)
 end
-=#
+
+function fast1_2opti(solution,n,m,couts,crts,matrix)
+    x_best = Solution(solution,calculz(solution,couts,n))
+    trouvé = false
+    i = 0
+    x_best = Solution(solution,calculz(solution,couts,n))
+    while i < n && !trouvé
+        i+=1
+        if  x_best.x[i]  == 1
+            x_prime = deepcopy(x_best)
+            x_prime.x[i] = 0
+            x_prime.objectif -= couts[i]
+            j = 0
+            while j < n && !trouvé
+                j+=1
+                if x_prime.x[j] == 0 && j != i && select(crts,matrix,m,j)
+                    x_seconde = deepcopy(x_prime)
+                    x_seconde.x[j] = 1
+                    x_seconde.objectif += couts[j]
+                    p = 0
+                    while p < n && !trouvé
+                        p+=1
+                        if  x_seconde.x[p] == 0 && p != i && select(crts,matrix,m,p)
+                            x_tierce = deepcopy(x_seconde)
+                            x_tierce.x[p] = 1
+                            x_tierce.objectif = couts[p]
+
+                            if x_tierce.objectif > x_best.objectif
+                                x_best = deepcopy(x_tierce)
+                                trouvé = true
+                            end
+                        end
+                    end
+                end
+            end
+        end
+    end
+    return(x_best.x,x_best.objectif)
+end
