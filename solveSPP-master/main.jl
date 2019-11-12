@@ -78,18 +78,18 @@ for f in fnames
     println(" ")
 
     println("Zavg : ")
-    println(liste_zavg)
+    #println(liste_zavg)
     println("Zmin : ")
-    println(liste_zmin)
+    #println(liste_zmin)
     println("Zmax : ")
-    println(liste_zmax)
+    #println(liste_zmax)
 
         #Pkg.add("PyPlot") # Mandatory before the first use of this package
     println(" ");println("  Graphiques de synthese")
 
     #plotRunGrasp(f, liste_zmin, zls, liste_zmax)
-    plotAnalyseGrasp(f, 1:length(liste_zavg), liste_zavg, liste_zmin, liste_zmax )
-    plotRunGrasp(f, z_rouge, z_vert, ligne_verte)
+    #plotAnalyseGrasp(f, 1:length(liste_zavg), liste_zavg, liste_zmin, liste_zmax )
+    #plotRunGrasp(f, z_rouge, z_vert, ligne_verte)
 #    plotAnalyseGrasp(f, x, zmoy[instancenb,:], zmin[instancenb,:], zmax[instancenb,:] )
 #    plotCPUt(allfinstance, tmoy)
 #=

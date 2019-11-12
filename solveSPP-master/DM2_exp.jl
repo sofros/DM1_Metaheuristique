@@ -65,7 +65,7 @@ function expGlouton(fnames)
 end
 
 
-function expRect(fnames)
+function expReact(fnames)
     for f in fnames
         println("====================================================================")
         println(f)
@@ -77,6 +77,6 @@ function expRect(fnames)
     cd("../")
 end
 
-expRect(fnames)
+#expReact(fnames)
 #expGRASP(fnames)
 #expGlouton(fnames)
