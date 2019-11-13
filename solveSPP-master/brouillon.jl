@@ -18,6 +18,81 @@ nbrCuts = 4
 nbrGen = 5
 #Array{(Array{Bool,1}),Int64)}
 
+function mutationAdd(pop::Array{Tuple{Int64,Array{Bool,1}},1}, p::Float64, matrix::Array{Int64,2}, cost::Array{Int64,1})
+    for i in 1:length(pop)
+        r = rand()
+        if r < p
+            # println("superMutation")
+            pop[i] = addSimpleDescent(pop[i], matrix, cost)
+        # elseif r < 0.6
+        #     # pop_int[i] = zero_one_exchange(pop_int[i],matrix,cost)
+            # pop_int[i] = one_one_exchange(pop_int[i],matrix,cost)
+            # pop_int[i] = one_two_exchange(pop_int[i],matrix,cost)
+        end
+    end
+    return pop
+end
+
+function addSimpleDescent(sol::Tuple{Int64,Array{Bool,1}}, matrix::Array{Int64,2}, cost::Array{Int64,1})
+    best_sol = zero_one_exchange(sol,matrix,cost)
+    while best_sol[1] > sol[1]
+        sol = best_sol
+        best_sol = zero_one_exchange(sol,matrix,cost)
+    end
+    return sol
+end
+
+function zero_one_exchange(sol::Tuple{Array{Bool,1},Int64}, matrix::Array{Int64,2}, cost::Array{Int64,1})
+    best_voisin = copy(sol[1])
+    best_z = copy(sol[2])
+    indvar = 0
+    stop = false
+
+    vars_0 = Int64[]                             # Vecteur contenant l'indice des variables de decision valant 0 dans la solution @sol
+    constr_sat = Int64[]                        # Vecteur contenant l'indice des contraintes satisfaites
+    for i = 1:length(sol[1])
+        if sol[1][i] == 0
+            push!(vars_0,i)
+        else
+            for j = 1:size(matrix)[1]
+                if matrix[j,i] == 1
+                    push!(constr_sat,j)
+                end
+            end
+        end
+    end
+
+    p_candidat = Int64[]
+    for var in vars_0
+        vaut0 = false
+        for constr in constr_sat
+            if matrix[constr,var] == 1
+                vaut0 = true
+            end
+        end
+        if !vaut0
+            push!(p_candidat,var)
+        end
+    end
+
+    i = 1
+    while i <= length(p_candidat) && !stop
+        z_voisin = sol[2] + cost[p_candidat[i]]
+        if z_voisin > best_z
+            stop = true
+            best_z = z_voisin
+        else
+            i = i+1
+        end
+    end
+
+    if stop
+        best_voisin[p_candidat[i]] = 1
+    end
+    # println("amélioration :", sol[1]," ->", best_z)
+    # println("admissibilite du voisin 0-1 :", is_admissible((best_z,best_voisin),cost,matrix))
+    return best_z, best_voisin
+end
 
 function genPop(cost, matrix, n, m, alphaS)
     for i in 1:40

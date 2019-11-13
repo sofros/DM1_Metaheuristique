@@ -31,6 +31,7 @@ function getfname(target)
 
     # extrait les noms valides et retourne le vecteur correspondant
     finstances = allfiles[flag]
-    
+
+    cd("../")
     return finstances
 end

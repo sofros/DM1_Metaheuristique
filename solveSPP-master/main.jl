@@ -35,12 +35,13 @@ include("recuit2.jl")
 
 # Collecting the names of instances to solve C:Users/Documents/ORO/Metaheuristiques/DM1_Metaheuristique/
 #target = "/comptes/E197494S/DM/Metaheuristique/DM1_Metaheuristique-master/solveSPP-master/Data"            # path for a standard config on Linux
-#target = "B:/Cours/Nantes/Metaheuristique/DM1_Metaheuristique/solveSPP-master/Data"
-target = "C:/Users/Emmanuel/Documents/ORO/Métaheurisques/DM1_Metaheuristique/solveSPP-master/Data"                         # path for personal config on windows10
+target = "B:/Cours/Nantes/Metaheuristique/DM1_Metaheuristique/solveSPP-master/Data"
+#target = "C:/Users/Emmanuel/Documents/ORO/Métaheurisques/DM1_Metaheuristique/solveSPP-master/Data"                         # path for personal config on windows10
 cd
 fnames = getfname(target)
 
 #===================================================#
+
 for f in fnames
     println("====================================================================")
     println(f)
@@ -91,14 +92,16 @@ for f in fnames
     #plotRunGrasp(f, liste_zmin, zls, liste_zmax)
     plotAnalyseGrasp(f, 1:length(liste_zavg), liste_zavg, liste_zmin, liste_zmax )
     plotRunGrasp(f, z_rouge, z_vert, ligne_verte)
+
      #On fait une solution de base
     (Sol,z, crts) = GRASP(cost, matrix, n, m, 0.75)
     #test Recuit
-    test = SA(Sol,n,m,cost,crts,matrix,exchange1_1)
-    println("solution du SA :", test[2])
+    println(z)
+    test = SA(Sol,n,m,cost,crts,matrix,exchange1_2)
+    println("solution du SA :", test[2])#=
 #    plotAnalyseGrasp(f, x, zmoy[instancenb,:], zmin[instancenb,:], zmax[instancenb,:] )
 #    plotCPUt(allfinstance, tmoy)
-#=
+
 using Plots
 #@userplot PortfolioComposition
 
@@ -121,6 +124,7 @@ using Plots
     returns = sort!((1:N) + D * randn(N))
     portfoliocomposition(weights, returns, labels=permutedims(tickers))=#
 end
+
 cd("../")
 
 
