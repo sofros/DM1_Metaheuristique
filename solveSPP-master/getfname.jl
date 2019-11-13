@@ -6,6 +6,7 @@ function getfname(target)
 
     # positionne le currentdirectory dans le repertoire cible
     cd(joinpath(homedir(),target))
+    println(joinpath(homedir(),target))
 
     # retourne le repertoire courant
     println("pwd = ", pwd())
@@ -22,6 +23,7 @@ function getfname(target)
         if f[1] != '.'
             # pas un fichier cache => conserver
             println("fname = ", f)
+
         else
             # fichier cache => supprimer
             flag[k] = false
@@ -32,6 +34,5 @@ function getfname(target)
     # extrait les noms valides et retourne le vecteur correspondant
     finstances = allfiles[flag]
 
-    cd("../")
     return finstances
 end

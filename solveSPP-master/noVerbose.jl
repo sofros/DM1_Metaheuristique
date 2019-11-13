@@ -15,9 +15,9 @@ nbrSelectionné = 4 #sera multiplié par 2 pour avoir le nombre de couples
 chanceMut = 0.80
 taillePopInitiale = 120 # Plus exactement sera Int64(floor(taillePopInitiale/3))*3
 cuts = []
-nbrEnfants = 10 # sera multiplié par 2
+nbrEnfants = 5 # sera multiplié par 2
 nbrCuts = 3
-nbrGenerations = 50
+nbrGenerations = 5
 #Array{(Array{Bool,1}),Int64)}
 
 
@@ -31,8 +31,8 @@ function genPop(cost, matrix, n, m, alphaS, taillePopInitiale)
         (x,z) = smartRepair(matrix , cost, x)
         push!(population, (x, z))
 
-        (x, z) = UpgradeGRASP(cost, matrix, n, m, alphaS[3])
-        #(x, z, desactive_condition) = GRASP(cost, matrix, n, m, alphaS[3])
+        #(x, z) = UpgradeGRASP(cost, matrix, n, m, alphaS[3])
+        (x, z, desactive_condition) = GRASP(cost, matrix, n, m, alphaS[3])
         ##println(typeof(z))
         (x,z) = smartRepair(matrix , cost, x)
         push!(population, (x, z))
@@ -45,9 +45,9 @@ function genPop(cost, matrix, n, m, alphaS, taillePopInitiale)
     sort!(population, by = sol -> sol[2])
     #println("\n\n\n")
     ##println(population)
-    for sol in population
-        afficheValSol(sol)
-    end
+#    for sol in population
+#        afficheValSol(sol)
+#    end
     return(population)
 end
 
@@ -651,8 +651,9 @@ end
 #======================================================#
 
 function expPop(fnames)
-    target = "B:/Cours/Nantes/Metaheuristique/DM1_Metaheuristique/solveSPP-master/Data"
-    fnames = getfname(target)
+    t = time()
+    #target = "Data"
+    #fnames = getfname(target)
     for f in fnames
         println("====================================================================")
         println(f)
@@ -668,7 +669,27 @@ function expPop(fnames)
         for sol in elite[end-2:end]
             afficheValSol(sol)
         end
+
+
+        vecZBest = []
+        vecZAvg = []
+        vecZMin = []
+
         for i in 1:nbrGenerations
+
+            zBest = elite[end][2]
+            zAvg = 0
+            for sol in elite
+                zAvg += sol[2]
+            end
+            zAvg = zAvg/length(elite)
+            zMin = elite[1][2]
+
+
+            push!(vecZBest, zBest)
+            push!(vecZAvg, zAvg)
+            push!(vecZMin, zMin)
+
             participant = roulette(elite, nbrParticipants)
             selecElite = TournoiMeilleur(participant, nbrSelectionné)
             #println("\n selection elite: ",selecElite)
@@ -718,21 +739,48 @@ function expPop(fnames)
 =#
         end
         #recap
+#=
         println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
         println("reacap de fin: ")
         println(f)
         println("Alpha de generation de population initiale: ", alphaS, "  Nbr de cut: ",  nbrCuts," Nbr generation: ", nbrGenerations, "   taille de la pop initiale: ", Int64(floor(taillePopInitiale/3)*3))
         println("Nbr couple de parents: ", nbrSelectionné*2, "   nbr de participants/tournoi: ", nbrParticipants)
         println("Nbr enfant/ generation: ", nbrEnfants*2,"   Chance mutation: ", chanceMut)
+=#
+        afficheSol(elite[end])
 
 #=
         sort!(population, by = sol -> sol[2])
         for sol in population
             afficheValSol(sol)
         end
+
 =#
+    zBest = elite[end][2]
+    zAvg = 0
+    for sol in elite
+        zAvg += sol[2]
+    end
+    zAvg = zAvg/length(elite)
+    zMin = elite[1][2]
+    return(vecZBest, vecZAvg, vecZMin,zBest, zAvg, zMin, t)
     end
 
 end
+println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+println("reacap de fin: ")
+println(fnames)
+println("Alpha de generation de population initiale: ", alphaS, "  Nbr de cut: ",  nbrCuts," Nbr generation: ", nbrGenerations, "   taille de la pop initiale: ", Int64(floor(taillePopInitiale/3)*3))
+println("Nbr couple de parents: ", nbrSelectionné*2, "   nbr de participants/tournoi: ", nbrParticipants)
+println("Nbr enfant/ generation: ", nbrEnfants*2,"   Chance mutation: ", chanceMut)
 
-expPop(fnames)
+for i in 1:10
+    println("=============================")
+    println("Run numéro: ", i)
+    (vecZBest, vecZAvg, vecZMin,zBest, zAvg, zMin, t) = expPop(fnames)
+    println("\n \ntemps: ", time() - t)
+    println("zBest: ",zBest,"   zAvg:  ", zAvg,"   zMin:  ", zMin)
+    #println(vecZBest, vecZAvg, vecZMin)
+end
+
+cd("../")
