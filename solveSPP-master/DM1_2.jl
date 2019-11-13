@@ -191,3 +191,13 @@ function fast1_2opti(solution,n,m,couts,crts,matrix)
     end
     return(x_best.x,x_best.objectif)
 end
+
+function ite1_2(solution,n,m,couts,crts,matrix)
+	x = (solution, calculz(solution))
+	arret = false
+	while ! arret
+		x_prime = fast1_2opti(x[1],n,m,couts,crts,matrix)
+		 arrêt = x[2] == x_prime[2]
+		 x = x_prime
+	end
+end

@@ -1,8 +1,8 @@
 
-t_deb = 100000
-t_fin = 1000
-alpha = 1/3
-palier = 10
+t_deb = 1000000
+t_fin = 100
+alpha = 0.8
+palier = 50
 
 function acceptation(solution, delta, t)
  return rand(Float64) <= Base.MathConstants.ℯ ^ (delta/t)
