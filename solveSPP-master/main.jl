@@ -15,7 +15,7 @@ include("experiment.jl")
 include("DM2_2.jl")
 include("recuit2.jl")
 #include("brouillon.jl")
-
+include("noVerbose.jl")
 # =========================================================================== #
 
 # Setting the data
@@ -123,6 +123,10 @@ using Plots
     weights ./= sum(weights, dims=2)
     returns = sort!((1:N) + D * randn(N))
     portfoliocomposition(weights, returns, labels=permutedims(tickers))=#
+	    (vecZBest, vecZAvg, vecZMin,zBest, zAvg, zMin, t) = expPop("pb_200rnd800.dat")
+		x = 1:50
+		y = (vecZbest,vecZAvg,vecZMin)
+		plot(x,y,label=["zBest,zAvg,zMax"])
 end
 
 cd("../")
